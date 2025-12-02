@@ -245,6 +245,35 @@ import "../styles/home.css";
         const itemWidth = 350;
         const gap = 0;
         const totalItems = items.length;
+        const cloneCount = totalItems; // 克隆整个列表，实现无限循环
+
+        // 创建克隆的 item（前面的克隆：整个列表）
+        for (let i = 0; i < cloneCount; i++) {
+          const originalItem = items[i];
+          const clone = originalItem.cloneNode(true);
+          clone.classList.add("clone-item");
+          clone.setAttribute("data-clone-index", i);
+          clone.setAttribute("data-original-index", i);
+          clone.setAttribute("aria-hidden", "true");
+          carouselUl.insertBefore(clone, items[0]);
+        }
+
+        // 创建克隆的 item（后面的克隆：整个列表）
+        for (let i = 0; i < cloneCount; i++) {
+          const originalItem = items[i];
+          const clone = originalItem.cloneNode(true);
+          clone.classList.add("clone-item");
+          clone.setAttribute("data-clone-index", i);
+          clone.setAttribute("data-original-index", i);
+          clone.setAttribute("aria-hidden", "true");
+          carouselUl.appendChild(clone);
+        }
+
+        // 重新获取所有 items（包括克隆的）
+        const allItems = carouselUl.querySelectorAll(".ticker-item");
+        const allImages = carouselUl.querySelectorAll(".coverflow-item");
+        const totalVirtualItems = totalItems * 3; // 原始 + 前面克隆 + 后面克隆
+
         let currentX = 0;
         let isDragging = false;
         let startX = 0;
@@ -255,6 +284,9 @@ import "../styles/home.css";
         let animationFrameId = null;
         let dragDistance = 0; // 记录拖拽距离，用于区分点击和拖拽
         let clickedItemIndex = null; // 记录点击的 item 索引
+        let autoPlayTimer = null; // 自动轮播定时器
+        let isAutoPlaying = true; // 是否自动轮播
+        const autoPlayInterval = 3000; // 自动轮播间隔（毫秒）
 
         // 计算 offset（相对于容器中心的位置，像素值）
         // offset = itemCenterX - containerCenter
@@ -324,11 +356,14 @@ import "../styles/home.css";
           return { rotateY, scale, x, zIndex };
         }
 
-        // 更新所有 item 的 transform
+        // 更新所有 item 的 transform（包括克隆的）
         function updateTransforms() {
-          items.forEach((item, index) => {
-            // 计算当前 item 的 offset
-            const offset = getOffset(index, currentX);
+          allItems.forEach((item, virtualIndex) => {
+            const img = item.querySelector(".coverflow-item");
+            if (!img) return;
+
+            // 计算当前虚拟 item 的 offset
+            const offset = getOffset(virtualIndex, currentX);
             const { rotateY, scale, x, zIndex } =
               getTransformFromOffset(offset);
 
@@ -336,66 +371,117 @@ import "../styles/home.css";
             item.style.zIndex = zIndex.toString();
 
             // 更新 img 的 transform
-            const img = images[index];
-            if (img) {
-              // x 是百分比字符串，需要转换为像素值
-              // 百分比是相对于 item 自身的宽度
-              const xPx = x === "0%" ? 0 : (parseFloat(x) / 100) * itemWidth;
+            const xPx = x === "0%" ? 0 : (parseFloat(x) / 100) * itemWidth;
 
-              // 按照原示例的 transform 顺序：perspective(500px) translateX(x) rotateY(deg) scale
-              img.style.transform = `perspective(500px) translateX(${xPx}px) rotateY(${rotateY}deg) scale(${scale})`;
-            }
+            // 按照原示例的 transform 顺序：perspective(500px) translateX(x) rotateY(deg) scale
+            img.style.transform = `perspective(500px) translateX(${xPx}px) rotateY(${rotateY}deg) scale(${scale})`;
           });
         }
 
-        // 计算让指定 item 居中的 X 位置
-        function getSnapPosition(itemIndex) {
+        // 计算让指定虚拟 item 居中的 X 位置
+        function getSnapPosition(virtualIndex) {
           if (!carouselContainer) return 0;
           const containerCenter = carouselContainer.offsetWidth / 2;
-          const itemStart = itemIndex * (itemWidth + gap);
-          // 要让 item 居中，需要：itemStart + currentX + itemWidth/2 = containerCenter
-          // 所以：currentX = containerCenter - itemStart - itemWidth/2
+          const itemStart = virtualIndex * (itemWidth + gap);
           return containerCenter - itemStart - itemWidth / 2;
         }
 
-        // 找到距离当前位置最近的 item（用于 snap）
+        // 检查并处理循环跳转（实现无限循环）
+        function checkLoopJump() {
+          if (isDragging || animationFrameId) return;
+
+          const singleSetWidth = totalItems * (itemWidth + gap);
+          const centerVirtualIndex = totalItems; // 中间区域的起始索引
+
+          // 如果滚动到前面的克隆区域，跳转到中间的真实位置
+          if (currentX > -singleSetWidth / 2) {
+            currentX -= singleSetWidth;
+            carouselUl.style.transition = "none";
+            updateCarouselPosition();
+            setTimeout(() => {
+              carouselUl.style.transition = "";
+            }, 0);
+          }
+
+          // 如果滚动到后面的克隆区域，跳转到中间的真实位置
+          const maxScroll = -singleSetWidth * 1.5;
+          if (currentX < maxScroll) {
+            currentX += singleSetWidth;
+            carouselUl.style.transition = "none";
+            updateCarouselPosition();
+            setTimeout(() => {
+              carouselUl.style.transition = "";
+            }, 0);
+          }
+        }
+
+        // 找到距离当前位置最近的虚拟 item（用于 snap）
         function findNearestItem() {
-          if (!carouselContainer) return 0;
+          if (!carouselContainer) return totalItems; // 默认返回中间区域的第一个
           const containerCenter = carouselContainer.offsetWidth / 2;
-          let nearestIndex = 0;
+          let nearestIndex = totalItems;
           let minDistance = Infinity;
 
-          items.forEach((item, index) => {
-            const itemStart = index * (itemWidth + gap);
+          allItems.forEach((item, virtualIndex) => {
+            const itemStart = virtualIndex * (itemWidth + gap);
             const itemCenterX = itemStart + currentX + itemWidth / 2;
             const distance = Math.abs(itemCenterX - containerCenter);
             if (distance < minDistance) {
               minDistance = distance;
-              nearestIndex = index;
+              nearestIndex = virtualIndex;
             }
           });
 
           return nearestIndex;
         }
 
-        // 切换到指定索引的图片
-        function goToItem(itemIndex) {
-          const snapX = getSnapPosition(itemIndex);
+        // 切换到指定虚拟索引的图片
+        function goToItem(virtualIndex) {
+          const snapX = getSnapPosition(virtualIndex);
           animateTo(snapX);
         }
 
         // 切换到下一张图片（往左滚动，显示下一张）
         function nextItem() {
-          const currentIndex = findNearestItem();
-          const nextIndex = (currentIndex + 1) % totalItems;
-          goToItem(nextIndex);
+          const currentVirtualIndex = findNearestItem();
+          const nextVirtualIndex = currentVirtualIndex + 1;
+          goToItem(nextVirtualIndex);
         }
 
         // 切换到上一张图片（往右滚动，显示上一张）
         function prevItem() {
-          const currentIndex = findNearestItem();
-          const prevIndex = (currentIndex - 1 + totalItems) % totalItems;
-          goToItem(prevIndex);
+          const currentVirtualIndex = findNearestItem();
+          const prevVirtualIndex = currentVirtualIndex - 1;
+          goToItem(prevVirtualIndex);
+        }
+
+        // 启动自动轮播
+        function startAutoPlay() {
+          if (autoPlayTimer) return;
+          autoPlayTimer = setInterval(() => {
+            if (!isDragging && !animationFrameId && isAutoPlaying) {
+              nextItem();
+            }
+          }, autoPlayInterval);
+        }
+
+        // 停止自动轮播
+        function stopAutoPlay() {
+          if (autoPlayTimer) {
+            clearInterval(autoPlayTimer);
+            autoPlayTimer = null;
+          }
+        }
+
+        // 暂停自动轮播（用户交互时）
+        function pauseAutoPlay() {
+          stopAutoPlay();
+          // 3秒后恢复自动轮播
+          setTimeout(() => {
+            if (isAutoPlaying) {
+              startAutoPlay();
+            }
+          }, 5000);
         }
 
         // 平滑动画到指定位置
@@ -417,6 +503,7 @@ import "../styles/home.css";
               animationFrameId = requestAnimationFrame(animate);
             } else {
               animationFrameId = null;
+              checkLoopJump(); // 动画结束后检查循环跳转
             }
           }
 
@@ -430,6 +517,7 @@ import "../styles/home.css";
         function updateCarouselPosition() {
           carouselUl.style.transform = `translateX(${currentX}px)`;
           updateTransforms();
+          checkLoopJump(); // 检查循环跳转
         }
 
         // 拖拽功能
@@ -437,7 +525,7 @@ import "../styles/home.css";
           // 找到点击的是哪个 item
           const clickedElement = e.target.closest(".ticker-item");
           if (clickedElement) {
-            clickedItemIndex = Array.from(items).indexOf(clickedElement);
+            clickedItemIndex = Array.from(allItems).indexOf(clickedElement);
           } else {
             clickedItemIndex = null;
           }
@@ -450,6 +538,9 @@ import "../styles/home.css";
           velocity = 0;
           dragDistance = 0; // 重置拖拽距离
           carouselUl.style.cursor = "grabbing";
+
+          // 暂停自动轮播
+          pauseAutoPlay();
 
           // 取消任何正在进行的动画
           if (animationFrameId) {
@@ -511,6 +602,9 @@ import "../styles/home.css";
 
             dragDistance = 0;
             clickedItemIndex = null;
+
+            // 恢复自动轮播
+            pauseAutoPlay();
           }
         });
 
@@ -529,6 +623,9 @@ import "../styles/home.css";
           lastX = e.touches[0].pageX;
           lastTime = performance.now();
           velocity = 0;
+
+          // 暂停自动轮播
+          pauseAutoPlay();
 
           // 取消任何正在进行的动画
           if (animationFrameId) {
@@ -564,26 +661,32 @@ import "../styles/home.css";
             const nearestIndex = findNearestItem();
             const snapX = getSnapPosition(nearestIndex);
             animateTo(snapX);
+
+            // 恢复自动轮播
+            pauseAutoPlay();
           }
         });
 
         carouselUl.style.cursor = "grab";
 
         // 给所有图片添加指针样式，提示可以点击
-        images.forEach((img) => {
+        allImages.forEach((img) => {
           img.style.cursor = "pointer";
         });
 
-        // 初始化位置：让中间的图片（第5张，index=4）居中，这样左右各能看到2张图
+        // 初始化位置：让中间区域的第一个图片居中（虚拟索引 = totalItems）
         if (carouselContainer) {
-          // 让中间的图片居中（总共9张，中间是第5张，index=4）
-          const centerIndex = Math.floor(totalItems / 2); // 4
-          currentX = getSnapPosition(centerIndex);
+          // 让中间区域的第一个图片居中（这样左右各能看到足够的图片）
+          const centerVirtualIndex = totalItems; // 中间区域的起始索引
+          currentX = getSnapPosition(centerVirtualIndex);
           updateCarouselPosition();
         }
 
         // 初始更新
         updateTransforms();
+
+        // 启动自动轮播
+        startAutoPlay();
       }
     </script>
   </body>
