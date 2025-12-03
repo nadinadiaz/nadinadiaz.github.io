@@ -172,6 +172,31 @@
         </div>
       </div>
     </div>
+    <!-- Project Description Area -->
+    <div class="project-description-area" id="project-description-area">
+      <div class="project-content">
+        <h3 class="project-title" id="project-title">E-Commerce Platform</h3>
+        <p class="project-description" id="project-description">
+          A full-stack e-commerce platform built with React, Node.js, and
+          MongoDB. Features include user authentication, product management,
+          shopping cart, and payment integration.
+        </p>
+        <div class="project-technologies" id="project-technologies">
+          <span class="technology-tag">React</span>
+          <span class="technology-tag">Node.js</span>
+          <span class="technology-tag">MongoDB</span>
+          <span class="technology-tag">Stripe</span>
+        </div>
+        <div class="project-links" id="project-links">
+          <a href="#" class="project-link"
+            >Live <span style="font-size: 1.2rem;">→</span></a
+          >
+          <a href="#" class="project-link"
+            >GitHub <span style="font-size: 1.2rem;">→</span></a
+          >
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -186,6 +211,141 @@
     if (!carouselUl || !carouselContainer || !items || !images) {
       console.error("Projects carousel elements not found");
       return;
+    }
+
+    // 项目数据（统一描述长度，确保高度一致）
+    const projectsData = [
+      {
+        title: "E-Commerce Platform",
+        description:
+          "A full-stack e-commerce platform built with React, Node.js, and MongoDB. Features include user authentication, product management, shopping cart, and payment integration.",
+        technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+        liveLink: "#",
+        githubLink: "#",
+      },
+      {
+        title: "Task Management App",
+        description:
+          "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features for enhanced productivity.",
+        technologies: ["Vue.js", "Firebase", "Vuex", "Vuetify"],
+        liveLink: "#",
+        githubLink: "#",
+      },
+      {
+        title: "Portfolio Website",
+        description:
+          "A modern, responsive portfolio website built with Gatsby and styled-components. Features smooth animations and SEO optimization for better visibility.",
+        technologies: ["Gatsby", "Styled-components", "GraphQL", "Netlify"],
+        liveLink: "#",
+        githubLink: "#",
+      },
+      {
+        title: "Social Media Dashboard",
+        description:
+          "A comprehensive social media analytics dashboard with real-time data visualization, engagement metrics, and content scheduling features for businesses.",
+        technologies: ["React", "TypeScript", "Chart.js", "REST API"],
+        liveLink: "#",
+        githubLink: "#",
+      },
+      {
+        title: "Fitness Tracking App",
+        description:
+          "A mobile-first fitness tracking application with workout plans, progress tracking, and social sharing capabilities to help users stay motivated.",
+        technologies: ["React Native", "Firebase", "Redux", "Expo"],
+        liveLink: "#",
+        githubLink: "#",
+      },
+      {
+        title: "Recipe Sharing Platform",
+        description:
+          "An interactive recipe sharing platform where users can discover, create, and share their favorite recipes with the community worldwide.",
+        technologies: ["Next.js", "PostgreSQL", "Prisma", "AWS"],
+        liveLink: "#",
+        githubLink: "#",
+      },
+      {
+        title: "Music Streaming Service",
+        description:
+          "A music streaming platform with playlist management, personalized recommendations, and high-quality audio streaming for music lovers.",
+        technologies: ["Vue.js", "Node.js", "WebSocket", "Docker"],
+        liveLink: "#",
+        githubLink: "#",
+      },
+      {
+        title: "Project Management Tool",
+        description:
+          "A comprehensive project management tool with Gantt charts, team collaboration, time tracking, and reporting features for efficient workflows.",
+        technologies: ["Angular", "NestJS", "MongoDB", "Socket.io"],
+        liveLink: "#",
+        githubLink: "#",
+      },
+      {
+        title: "E-Learning Platform",
+        description:
+          "An online learning platform with video courses, interactive quizzes, progress tracking, and certificate generation for students and educators.",
+        technologies: ["React", "Django", "PostgreSQL", "AWS S3"],
+        liveLink: "#",
+        githubLink: "#",
+      },
+      {
+        title: "Weather Forecast App",
+        description:
+          "A beautiful weather forecast application with location-based forecasts, weather maps, and detailed meteorological data for accurate predictions.",
+        technologies: ["React", "TypeScript", "OpenWeather API", "Chart.js"],
+        liveLink: "#",
+        githubLink: "#",
+      },
+    ];
+
+    // 更新项目介绍（带淡入淡出动画）
+    function updateProjectDescription(projectIndex: number) {
+      const project = projectsData[projectIndex];
+      if (!project) return;
+
+      const contentEl = document.querySelector(
+        ".project-content"
+      ) as HTMLElement;
+      const titleEl = document.getElementById("project-title");
+      const descriptionEl = document.getElementById("project-description");
+      const technologiesEl = document.getElementById("project-technologies");
+      const linksEl = document.getElementById("project-links");
+
+      if (!contentEl) return;
+
+      // 淡出动画
+      contentEl.classList.remove("fade-in");
+      contentEl.classList.add("fade-out");
+
+      // 等待淡出完成后再更新内容
+      setTimeout(() => {
+        if (titleEl) titleEl.textContent = project.title;
+        if (descriptionEl) descriptionEl.textContent = project.description;
+
+        if (technologiesEl) {
+          technologiesEl.innerHTML = project.technologies
+            .map(
+              (tech) => `<span class="technology-tag">${tech}</span>`
+            )
+            .join("");
+        }
+
+        if (linksEl) {
+          linksEl.innerHTML = `
+          <a href="${project.liveLink}" class="project-link"
+            >Live <span style="font-size: 1.2rem;">→</span></a
+          >
+          <a href="${project.githubLink}" class="project-link"
+            >GitHub <span style="font-size: 1.2rem;">→</span></a
+          >
+        `;
+        }
+
+        // 淡入动画
+        requestAnimationFrame(() => {
+          contentEl.classList.remove("fade-out");
+          contentEl.classList.add("fade-in");
+        });
+      }, 200); // 等待淡出动画的一半时间
     }
 
     const itemWidth = 350; // SVG 图片宽度
@@ -233,6 +393,7 @@
     let autoPlayTimer: number | null = null;
     let isAutoPlaying = true;
     const autoPlayInterval = 4000;
+    let lastProjectIndex = -1; // 记录上次显示的项目索引
 
     function getOffset(itemIndex: number, scrollX: number) {
       if (!carouselContainer) return 0;
@@ -351,6 +512,35 @@
       return nearestIndex;
     }
 
+    // 从虚拟索引获取真实项目索引
+    function getRealProjectIndex(virtualIndex: number): number {
+      // 虚拟索引范围：
+      // 0 ~ cloneCount-1: 前面的克隆
+      // cloneCount ~ cloneCount+totalItems-1: 真实项目
+      // cloneCount+totalItems ~ cloneCount*2+totalItems-1: 后面的克隆
+      if (virtualIndex < cloneCount) {
+        // 前面的克隆，映射到对应的真实项目
+        return virtualIndex;
+      } else if (virtualIndex < cloneCount + totalItems) {
+        // 真实项目
+        return virtualIndex - cloneCount;
+      } else {
+        // 后面的克隆，映射到对应的真实项目
+        return virtualIndex - cloneCount - totalItems;
+      }
+    }
+
+    // 更新项目介绍（基于当前最近的 item）
+    function updateProjectDescriptionFromCarousel() {
+      const nearestVirtualIndex = findNearestItem();
+      const realIndex = getRealProjectIndex(nearestVirtualIndex);
+      // 只在项目真正改变时才更新
+      if (realIndex !== lastProjectIndex) {
+        lastProjectIndex = realIndex;
+        updateProjectDescription(realIndex);
+      }
+    }
+
     function goToItem(virtualIndex: number) {
       const snapX = getSnapPosition(virtualIndex);
       animateTo(snapX);
@@ -411,6 +601,8 @@
         } else {
           animationFrameId = null;
           checkLoopJump();
+          // 动画结束后更新项目介绍
+          updateProjectDescriptionFromCarousel();
         }
       }
 
@@ -486,11 +678,15 @@
           } else {
             goToItem(clickedItemIndex);
           }
-        } else {
-          const nearestIndex = findNearestItem();
-          const snapX = getSnapPosition(nearestIndex);
-          animateTo(snapX);
-        }
+            } else {
+              const nearestIndex = findNearestItem();
+              const snapX = getSnapPosition(nearestIndex);
+              animateTo(snapX);
+              // 拖拽结束后立即更新项目介绍
+              setTimeout(() => {
+                updateProjectDescriptionFromCarousel();
+              }, 100);
+            }
 
         dragDistance = 0;
         clickedItemIndex = null;
@@ -547,6 +743,10 @@
         const nearestIndex = findNearestItem();
         const snapX = getSnapPosition(nearestIndex);
         animateTo(snapX);
+        // 触摸结束后立即更新项目介绍
+        setTimeout(() => {
+          updateProjectDescriptionFromCarousel();
+        }, 100);
 
         pauseAutoPlay();
       }
@@ -565,6 +765,9 @@
     }
 
     updateTransforms();
+
+    // 初始化项目介绍（显示第一个项目）
+    updateProjectDescription(0);
 
     startAutoPlay();
   })();

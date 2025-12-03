@@ -402,7 +402,7 @@ nav {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  padding: 4rem 0;
+  padding: 6rem 0;
 }
 
 .projects-container {
@@ -410,7 +410,29 @@ nav {
   margin: 0 auto;
   color: #fff;
   text-align: center;
-  padding: 0 4rem;
+  padding: 0 2rem;
+}
+
+.project-description-area {
+  margin-top: 0;
+  padding: 0.25rem 0;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 200px;
+}
+
+.project-content {
+  opacity: 1;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.project-content.fade-out {
+  opacity: 0;
+}
+
+.project-content.fade-in {
+  opacity: 1;
 }
 
 .projects-carousel-wrapper {
@@ -424,7 +446,7 @@ nav {
   overflow: visible;
   perspective: 1500px;
   perspective-origin: center center;
-  padding: 2rem 0;
+  padding: 0.25rem 0;
   margin: 0 auto;
 }
 
@@ -453,17 +475,17 @@ nav {
 .mask {
   mask-image: linear-gradient(
     to right,
-    transparent 5%,
-    black 20%,
-    black 80%,
-    transparent 95%
+    transparent 10%,
+    black 25%,
+    black 75%,
+    transparent 90%
   );
   -webkit-mask-image: linear-gradient(
     to right,
-    transparent 5%,
-    black 20%,
-    black 80%,
-    transparent 95%
+    transparent 10%,
+    black 25%,
+    black 75%,
+    transparent 90%
   );
   display: flex;
   align-items: center;
@@ -507,12 +529,26 @@ nav {
       transparent 90%
     );
   }
+  .project-description-area {
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+  }
+  .project-content {
+    text-align: center;
+    align-items: center;
+  }
+  .project-title {
+    font-size: 1.5rem;
+  }
+  .project-description {
+    font-size: 1rem;
+  }
 }
 
 .projects-title {
   font-size: 2.5rem;
   font-weight: 800;
-  margin-bottom: 3rem;
+  margin-bottom: 0.25rem;
   margin-top: 0;
   letter-spacing: 0.01em;
   color: #fff;
@@ -537,10 +573,10 @@ nav {
 
 .project-content {
   flex: 1 1 50%;
-  text-align: left;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .project-image-container {
@@ -562,41 +598,43 @@ nav {
 }
 
 .project-title {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.25rem;
 }
 
 .project-description {
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: #f0f0f0;
-  line-height: 1.7;
-  margin-bottom: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 0.25rem;
+  min-height: 4.8em;
 }
 
 .project-technologies {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 1.5rem;
-  justify-content: flex-start;
+  margin-bottom: 0.25rem;
+  justify-content: center;
 }
 
 .technology-tag {
   background: #edf2f7;
   color: #4a5568;
-  padding: 0.35rem 1rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 20px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
 }
 
 .project-links {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 1rem;
+  flex-direction: row;
+  gap: 2rem;
+  margin-top: 0;
+  justify-content: center;
 }
 
 .project-link {
@@ -605,12 +643,12 @@ nav {
   gap: 0.5rem;
   color: #fff;
   text-decoration: none;
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 600;
   transition:
     color 0.3s,
     transform 0.3s;
-  padding: 0.7rem 0;
+  padding: 0.5rem 0;
   cursor: pointer;
 }
 
@@ -772,7 +810,7 @@ footer {
   box-shadow: 0 -1px 8px rgba(0, 0, 0, 0.03);
   position: relative;
   left: 0;
-  margin-top: 4rem;
+  margin-top: 0;
 }
 
 .footer-content {
