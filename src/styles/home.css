@@ -532,19 +532,32 @@ nav {
   margin-left: auto;
   margin-right: auto;
   min-height: 200px;
+  position: relative;
 }
 
-.project-content {
-  opacity: 1;
-  transition: opacity 0.4s ease-in-out;
+.project-description-viewport {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
 }
 
-.project-content.fade-out {
-  opacity: 0;
+.project-description-track {
+  position: relative;
+  width: 100%;
+  will-change: transform;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.project-content.fade-in {
-  opacity: 1;
+.project-content-item {
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 0;
 }
 
 .projects-carousel-wrapper {
@@ -645,9 +658,12 @@ nav {
     padding: 1.5rem 0;
     margin-top: 2rem;
   }
-  .project-content {
-    text-align: center;
-    align-items: center;
+  .project-description-viewport {
+    height: 180px;
+  }
+  
+  .project-content-item {
+    min-height: 180px;
   }
   .project-title {
     font-size: 1.5rem;
@@ -683,13 +699,7 @@ nav {
   margin: 0 auto;
 }
 
-.project-content {
-  flex: 1 1 50%;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+/* Project content styles are now in .project-content-wrapper-inner above */
 
 .project-image-container {
   flex: 1 1 50%;

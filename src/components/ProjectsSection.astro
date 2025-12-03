@@ -42,23 +42,29 @@ import { projectsConfig } from "../config/projects";
     </div>
     <!-- Project Description Area -->
     <div class="project-description-area" id="project-description-area">
-      <div class="project-content">
-        <h3 class="project-title" id="project-title">{projectsConfig.projects[0].title}</h3>
-        <p class="project-description" id="project-description">
-          {projectsConfig.projects[0].description}
-        </p>
-        <div class="project-technologies" id="project-technologies">
-          {projectsConfig.projects[0].technologies.map((tech) => (
-            <span class="technology-tag">{tech}</span>
+      <div class="project-description-viewport">
+        <div class="project-description-track" id="project-description-track">
+          {projectsConfig.projects.map((project, index) => (
+            <div class="project-content-item" data-project-index={index}>
+              <h3 class="project-title">{project.title}</h3>
+              <p class="project-description">
+                {project.description}
+              </p>
+              <div class="project-technologies">
+                {project.technologies.map((tech) => (
+                  <span class="technology-tag">{tech}</span>
+                ))}
+              </div>
+              <div class="project-links">
+                <a href={project.liveLink} class="project-link"
+                  >Live <span style="font-size: 1.2rem;">→</span></a
+                >
+                <a href={project.githubLink} class="project-link"
+                  >GitHub <span style="font-size: 1.2rem;">→</span></a
+                >
+              </div>
+            </div>
           ))}
-        </div>
-        <div class="project-links" id="project-links">
-          <a href={projectsConfig.projects[0].liveLink} class="project-link"
-            >Live <span style="font-size: 1.2rem;">→</span></a
-          >
-          <a href={projectsConfig.projects[0].githubLink} class="project-link"
-            >GitHub <span style="font-size: 1.2rem;">→</span></a
-          >
         </div>
       </div>
     </div>
@@ -83,55 +89,78 @@ import { projectsConfig } from "../config/projects";
     // 项目数据（从配置文件读取）
     const projectsData = JSON.parse(document.getElementById('projects-data')?.textContent || '[]');
 
-    // 更新项目介绍（带淡入淡出动画）
-    function updateProjectDescription(projectIndex: number) {
-      const project = projectsData[projectIndex];
-      if (!project) return;
-
-      const contentEl = document.querySelector(
-        ".project-content"
-      ) as HTMLElement;
-      const titleEl = document.getElementById("project-title");
-      const descriptionEl = document.getElementById("project-description");
-      const technologiesEl = document.getElementById("project-technologies");
-      const linksEl = document.getElementById("project-links");
-
-      if (!contentEl) return;
-
-      // 淡出动画
-      contentEl.classList.remove("fade-in");
-      contentEl.classList.add("fade-out");
-
-      // 等待淡出完成后再更新内容
-      setTimeout(() => {
-        if (titleEl) titleEl.textContent = project.title;
-        if (descriptionEl) descriptionEl.textContent = project.description;
-
-        if (technologiesEl) {
-          technologiesEl.innerHTML = project.technologies
-            .map(
-              (tech) => `<span class="technology-tag">${tech}</span>`
-            )
-            .join("");
-        }
-
-        if (linksEl) {
-          linksEl.innerHTML = `
-          <a href="${project.liveLink}" class="project-link"
-            >Live <span style="font-size: 1.2rem;">→</span></a
-          >
-          <a href="${project.githubLink}" class="project-link"
-            >GitHub <span style="font-size: 1.2rem;">→</span></a
-          >
-        `;
-        }
-
-        // 淡入动画
+    // 更新项目介绍（使用上下滚动切换，避免闪烁）
+    const descriptionTrack = document.getElementById("project-description-track");
+    const descriptionViewport = document.querySelector(".project-description-viewport") as HTMLElement;
+    let currentProjectIndex = 0;
+    let isScrolling = false;
+    let currentTranslateY = 0;
+    
+    // 初始化：设置第一个项目的位置
+    function initializeDescriptionPosition() {
+      if (!descriptionTrack || !descriptionViewport) return;
+      
+      const items = descriptionTrack.querySelectorAll(".project-content-item");
+      if (items.length === 0) return;
+      
+      const firstItem = items[0] as HTMLElement;
+      if (firstItem) {
+        // 等待布局完成后再计算位置
         requestAnimationFrame(() => {
-          contentEl.classList.remove("fade-out");
-          contentEl.classList.add("fade-in");
+          // 计算第一个项目需要向上移动的距离，使其在视口顶部显示
+          const firstItemTop = firstItem.offsetTop;
+          currentTranslateY = -firstItemTop;
+          descriptionTrack.style.transform = `translateY(${currentTranslateY}px)`;
         });
-      }, 200); // 等待淡出动画的一半时间
+      }
+    }
+    
+    function updateProjectDescription(projectIndex: number) {
+      if (!descriptionTrack || !descriptionViewport || isScrolling) return;
+      if (projectIndex === currentProjectIndex) return;
+
+      const items = descriptionTrack.querySelectorAll(".project-content-item");
+      if (items.length === 0) return;
+      
+      if (projectIndex < 0 || projectIndex >= items.length) return;
+
+      // 获取目标项目的位置
+      const targetItem = items[projectIndex] as HTMLElement;
+      if (!targetItem) return;
+
+      // 计算目标位置：使目标项目在视口顶部显示
+      const targetItemTop = targetItem.offsetTop;
+      const targetY = -targetItemTop;
+      
+      // 开始滚动动画
+      isScrolling = true;
+      const startY = currentTranslateY;
+      const startTime = performance.now();
+      const duration = 500; // 500ms 滚动动画
+
+      function animateScroll(currentTime: number) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // 使用 ease-in-out 缓动函数
+        const easeInOutCubic = progress < 0.5
+          ? 4 * progress * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+        
+        currentTranslateY = startY + (targetY - startY) * easeInOutCubic;
+        descriptionTrack.style.transform = `translateY(${currentTranslateY}px)`;
+
+        if (progress < 1) {
+          requestAnimationFrame(animateScroll);
+        } else {
+          // 动画完成
+          currentTranslateY = targetY;
+          currentProjectIndex = projectIndex;
+          isScrolling = false;
+        }
+      }
+
+      requestAnimationFrame(animateScroll);
     }
 
     const itemWidth = 350; // SVG 图片宽度
@@ -552,8 +581,11 @@ import { projectsConfig } from "../config/projects";
 
     updateTransforms();
 
-    // 初始化项目介绍（显示第一个项目）
-    updateProjectDescription(0);
+    // 初始化项目介绍位置
+    initializeDescriptionPosition();
+    
+    // 初始化项目介绍（显示第一个项目，但不滚动）
+    currentProjectIndex = 0;
 
     startAutoPlay();
   })();
