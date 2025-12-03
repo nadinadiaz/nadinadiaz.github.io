@@ -1,0 +1,312 @@
+---
+import "../styles/home.css";
+import "../styles/posts.css";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+
+// 文章数据
+const posts = [
+  {
+    id: 1,
+    date: "June 27, 2025",
+    title: "Web Performance Optimization Guide 2025",
+    tags: ["Business", "Performance"],
+    excerpt: "Introduction In 2025, web performance has become more critical than ever. With users expecting instant loading times and search engines prioritizing Core Web Vitals, optimizing website performance is essential for success. This comprehensive guide covers the latest techniques and best practices for achieving exceptional web performance. Core Web Vitals and Performance Metrics Understanding and optimizing […]",
+    readTime: "6 min read",
+    slug: "web-performance-optimization-guide-2025",
+    image: "/images/posts/craft-1141796_640.png"
+  },
+  {
+    id: 2,
+    date: "June 27, 2025",
+    title: "Tech Giants' AI Investment Surge",
+    tags: ["CSS"],
+    excerpt: "Introduction Major technology companies have dramatically increased their investments in artificial intelligence, with total spending exceeding $500 billion in 2025 alone. This unprecedented investment surge reflects the growing importance of AI in shaping the future of technology and business across all sectors. Investment Breakdown by Company The investment landscape shows significant commitments from industry leaders: […]",
+    readTime: "5 min read",
+    slug: "tech-giants-ai-investment-surge",
+    image: "/images/posts/work-8660354_640.png"
+  },
+  {
+    id: 3,
+    date: "June 27, 2025",
+    title: "SpaceX Mars Mission Update",
+    tags: ["Gatsby"],
+    excerpt: "Mission Overview SpaceX has achieved a major milestone in its Mars mission program with the successful completion of Starship's first orbital test flight. This historic event brings humanity one step closer to establishing a sustainable presence on the Red Planet. Test Flight Results The orbital test flight demonstrated several critical capabilities: Successful launch and ascent […]",
+    readTime: "2 min read",
+    slug: "spacex-mars-mission-update",
+    image: "/images/posts/logo-2724481_640.png"
+  },
+  {
+    id: 4,
+    date: "June 27, 2025",
+    title: "Quantum Computing Milestone",
+    tags: ["Backend", "Frontend"],
+    excerpt: "Introduction In a historic breakthrough for quantum computing, researchers have successfully developed and demonstrated a quantum computer with over 1000 qubits, marking a significant milestone in the field. This achievement represents a major step toward practical quantum computing applications and opens new possibilities for solving complex computational problems. The Breakthrough The 1000+ qubit quantum computer, […]",
+    readTime: "4 min read",
+    slug: "quantum-computing-milestone",
+    image: "/images/posts/lcd-32872_640.png"
+  },
+  {
+    id: 5,
+    date: "June 27, 2025",
+    title: "Market Analysis Template 2025",
+    tags: ["Business"],
+    excerpt: "Template Note: This comprehensive market analysis template provides a structured approach to conducting thorough industry research and competitive analysis for 2025 and beyond. Executive Summary This template provides a systematic framework for conducting comprehensive market analysis. It covers all essential aspects of market research, from industry overview to competitive positioning, helping organizations make informed strategic […]",
+    readTime: "5 min read",
+    slug: "market-analysis-template-2025",
+    image: "/images/posts/call-3613071_640.png"
+  },
+  {
+    id: 6,
+    date: "June 27, 2025",
+    title: "Major Cybersecurity Breakthrough",
+    tags: [],
+    excerpt: "Introduction In a groundbreaking development that promises to reshape the cybersecurity landscape, researchers have unveiled a revolutionary AI-powered threat detection system that can identify and neutralize cyber attacks with unprecedented accuracy and speed. This breakthrough represents a significant leap forward in protecting digital infrastructure against increasingly sophisticated threats. The Technology Behind the Breakthrough The new […]",
+    readTime: "6 min read",
+    slug: "major-cybersecurity-breakthrough",
+    image: "/images/posts/headphones-1899759_640.png"
+  },
+  {
+    id: 7,
+    date: "June 27, 2025",
+    title: "Business Template – Strategic Planning Framework",
+    tags: ["Node.js"],
+    excerpt: "Template Note: This is a business strategy template that can be customized for different industries and organizational needs. Executive Summary This template provides a comprehensive framework for developing business strategies and plans. It can be adapted for various business contexts, from startups to established enterprises. Business Overview Provide a clear overview of your business, including: […]",
+    readTime: "3 min read",
+    slug: "business-template-strategic-planning-framework",
+    image: "/images/posts/icons-6931458_640.png"
+  },
+  {
+    id: 8,
+    date: "June 26, 2025",
+    title: "Strategic Business Planning for 2025: A Comprehensive Guide",
+    tags: ["Gatsby", "React"],
+    excerpt: "Executive Summary As we approach 2025, businesses face unprecedented challenges and opportunities in an increasingly digital and interconnected world. This strategic planning guide provides a framework for organizations to navigate the complex landscape and position themselves for sustainable growth. Market Analysis and Trends The business environment in 2025 is characterized by several key trends: Accelerated […]",
+    readTime: "4 min read",
+    slug: "strategic-business-planning-for-2025",
+    image: "/images/posts/cloud-3331240_640.png"
+  },
+  {
+    id: 9,
+    date: "May 15, 2025",
+    title: "The Rise of AI-Powered Development Tools in 2025",
+    tags: ["CSS", "Design"],
+    excerpt: "Introduction As we move deeper into 2025, artificial intelligence continues to reshape the software development landscape. From code generation to automated testing, AI tools are becoming an integral part of every developer's toolkit. This article explores the most significant trends and their impact on the development workflow. The Evolution of AI Code Assistants The past […]",
+    readTime: "4 min read",
+    slug: "the-rise-of-ai-powered-development-tools-in-2025",
+    image: "/images/posts/man-1459246_640.png"
+  }
+];
+
+// 按日期分组文章
+const groupedPosts = posts.reduce((acc, post) => {
+  if (!acc[post.date]) {
+    acc[post.date] = [];
+  }
+  acc[post.date].push(post);
+  return acc;
+}, {} as Record<string, typeof posts>);
+
+// 所有标签
+const allTags = ["Backend", "Business", "CSS", "Design", "Frontend", "Gatsby", "Node.js", "Performance", "React", "Web Development"];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Blog Posts - WordPress Gatsby Blog</title>
+  </head>
+  <body>
+    <Navigation />
+    
+    <main class="posts-page">
+      <div class="posts-container">
+        <div class="posts-header">
+          <h1 class="posts-title">Blog Posts</h1>
+          <p class="posts-subtitle">Explore our latest articles on web development, design, and technology</p>
+        </div>
+        
+        <div class="search-filter-section">
+          <div class="search-box">
+            <input type="text" placeholder="Search posts..." class="search-input" id="search-input" />
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="m19 19-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        
+        <div class="tags-filter">
+          <span class="tags-label">Filter by tags:</span>
+          <div class="tags-list">
+            {allTags.map((tag) => (
+              <button class="tag-button" data-tag={tag.toLowerCase().replace(/\s+/g, '-')}>
+                {tag}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div class="posts-list">
+          {Object.entries(groupedPosts).map(([date, datePosts]) => (
+            <div class="date-group" data-date={date}>
+              <h2 class="date-header">{date}</h2>
+              <div class="date-card">
+                {datePosts.map((post) => (
+                  <article class="post-item" data-post-id={post.id}>
+                    <div class="post-summary">
+                      <div class="title-icon-left"></div>
+                      <h3 class="post-title">
+                        <a href={`/posts/${post.slug}`} class="post-title-link">{post.title}</a>
+                        <div class="title-icon-right"></div>
+                      </h3>
+                      {post.tags.length > 0 && (
+                        <div class="post-tags">
+                          {post.tags.map((tag) => (
+                            <span class="post-tag">{tag}</span>
+                          ))}
+                        </div>
+                      )}
+                      <button class="post-toggle" aria-label="Toggle post details">
+                        <span class="post-arrow">↓</span>
+                      </button>
+                    </div>
+                    <div class="post-details">
+                      <div class="post-content-wrapper">
+                        <div class="post-excerpt-wrapper">
+                          <p class="post-excerpt">{post.excerpt}</p>
+                          <div class="post-footer">
+                            <a href={`/posts/${post.slug}`} class="post-read-more">
+                              Read more →
+                            </a>
+                            <span class="post-read-time">⏱️ {post.readTime}</span>
+                          </div>
+                        </div>
+                        <div class="post-image-container">
+                          <img src={post.image} alt={post.title} class="post-image" />
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<script>
+  // 展开/收起功能
+  const postToggles = document.querySelectorAll('.post-toggle');
+  const postSummaries = document.querySelectorAll('.post-summary');
+  
+  postToggles.forEach((toggle) => {
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const postItem = toggle.closest('.post-item');
+      if (postItem) {
+        postItem.classList.toggle('expanded');
+        const arrow = toggle.querySelector('.post-arrow');
+        if (arrow) {
+          arrow.textContent = postItem.classList.contains('expanded') ? '↑' : '↓';
+        }
+      }
+    });
+  });
+
+  // 点击单行展开/收起
+  postSummaries.forEach((summary) => {
+    summary.addEventListener('click', (e) => {
+      // 如果点击的是标题链接，不处理，让链接正常工作
+      if ((e.target as HTMLElement).closest('.post-title-link')) {
+        return;
+      }
+      // 如果点击的是下拉按钮，不处理，让按钮正常工作
+      if ((e.target as HTMLElement).closest('.post-toggle')) {
+        return;
+      }
+      
+      const postItem = summary.closest('.post-item');
+      if (postItem) {
+        postItem.classList.toggle('expanded');
+        const arrow = postItem.querySelector('.post-arrow');
+        if (arrow) {
+          arrow.textContent = postItem.classList.contains('expanded') ? '↑' : '↓';
+        }
+      }
+    });
+  });
+
+  // 搜索功能
+  const searchInput = document.getElementById('search-input');
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const searchTerm = (e.target as HTMLInputElement).value.toLowerCase();
+      const postItems = document.querySelectorAll('.post-item');
+      
+      postItems.forEach((item) => {
+        const title = item.querySelector('.post-title a')?.textContent?.toLowerCase() || '';
+        const excerpt = item.querySelector('.post-excerpt')?.textContent?.toLowerCase() || '';
+        
+        if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
+          (item as HTMLElement).style.display = 'block';
+        } else {
+          (item as HTMLElement).style.display = 'none';
+        }
+      });
+      
+      // 更新日期组的显示
+      const dateGroups = document.querySelectorAll('.date-group');
+      dateGroups.forEach((dateGroup) => {
+        const visibleItems = dateGroup.querySelectorAll('.post-item[style*="block"], .post-item:not([style*="none"])');
+        (dateGroup as HTMLElement).style.display = visibleItems.length > 0 ? 'block' : 'none';
+      });
+    });
+  }
+
+  // 标签过滤功能
+  const tagButtons = document.querySelectorAll('.tag-button');
+  const dateGroups = document.querySelectorAll('.date-group');
+
+  tagButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const selectedTag = button.getAttribute('data-tag');
+      
+      // 切换按钮激活状态
+      tagButtons.forEach((btn) => {
+        btn.classList.toggle('active', btn === button);
+      });
+
+      // 过滤文章
+      dateGroups.forEach((dateGroup) => {
+        const postItems = dateGroup.querySelectorAll('.post-item');
+        let hasVisiblePosts = false;
+
+        postItems.forEach((item) => {
+          const postTags = Array.from(item.querySelectorAll('.post-tag')).map(
+            (tag) => tag.textContent.toLowerCase().replace(/\s+/g, '-')
+          );
+          
+          if (!selectedTag || postTags.includes(selectedTag) || selectedTag === 'all') {
+            (item as HTMLElement).style.display = 'block';
+            hasVisiblePosts = true;
+          } else {
+            (item as HTMLElement).style.display = 'none';
+          }
+        });
+
+        // 如果该日期组没有可见的文章，隐藏整个日期组
+        (dateGroup as HTMLElement).style.display = hasVisiblePosts ? 'block' : 'none';
+      });
+    });
+  });
+</script>
+
