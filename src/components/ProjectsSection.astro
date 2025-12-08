@@ -19,23 +19,25 @@ import { projectsConfig } from "../config/projects";
             id="projects-carousel-ul"
             style="display:flex;position:relative;list-style-type:none;padding:0;margin:0;justify-content:flex-start;flex-direction:row;gap:0px;align-items:center;width:100%;height:100%;max-height:100%;max-width:100%;"
           >
-            {projectsConfig.images.map((imageSrc, index) => (
-              <li
-                class="ticker-item"
-                aria-hidden="false"
-                aria-posinset={index + 1}
-                aria-setsize={projectsConfig.images.length}
-                style="flex-grow:0;flex-shrink:0;position:relative;height:fit-content;z-index:1000;transform:none"
-              >
-                <img
-                  draggable="false"
-                  src={imageSrc}
-                  alt={`Project ${index + 1}`}
-                  class="coverflow-item"
-                  style="transform:perspective(500px)"
-                />
-              </li>
-            ))}
+            {
+              projectsConfig.images.map((imageSrc, index) => (
+                <li
+                  class="ticker-item"
+                  aria-hidden="false"
+                  aria-posinset={index + 1}
+                  aria-setsize={projectsConfig.images.length}
+                  style="flex-grow:0;flex-shrink:0;position:relative;height:fit-content;z-index:1000;transform:none"
+                >
+                  <img
+                    draggable="false"
+                    src={imageSrc}
+                    alt={`Project ${index + 1}`}
+                    class="coverflow-item"
+                    style="transform:perspective(500px)"
+                  />
+                </li>
+              ))
+            }
           </ul>
         </div>
       </div>
@@ -44,37 +46,41 @@ import { projectsConfig } from "../config/projects";
     <div class="project-description-area" id="project-description-area">
       <div class="project-description-viewport">
         <div class="project-description-track" id="project-description-track">
-          {projectsConfig.projects.map((project, index) => (
-            <div class="project-content-item" data-project-index={index}>
-              <h3 class="project-title">{project.title}</h3>
-              <p class="project-description">
-                {project.description}
-              </p>
-              <div class="project-technologies">
-                {project.technologies.map((tech) => (
-                  <span class="technology-tag">{tech}</span>
-                ))}
+          {
+            projectsConfig.projects.map((project, index) => (
+              <div class="project-content-item" data-project-index={index}>
+                <h3 class="project-title">{project.title}</h3>
+                <p class="project-description">{project.description}</p>
+                <div class="project-technologies">
+                  {project.technologies.map((tech) => (
+                    <span class="technology-tag">{tech}</span>
+                  ))}
+                </div>
+                <div class="project-links">
+                  <a href={project.liveLink} class="project-link">
+                    Live <span style="font-size: 1.2rem;">→</span>
+                  </a>
+                  <a href={project.githubLink} class="project-link">
+                    GitHub <span style="font-size: 1.2rem;">→</span>
+                  </a>
+                </div>
               </div>
-              <div class="project-links">
-                <a href={project.liveLink} class="project-link"
-                  >Live <span style="font-size: 1.2rem;">→</span></a
-                >
-                <a href={project.githubLink} class="project-link"
-                  >GitHub <span style="font-size: 1.2rem;">→</span></a
-                >
-              </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<script type="application/json" id="projects-data" set:html={JSON.stringify(projectsConfig.projects)}></script>
+<script
+  type="application/json"
+  id="projects-data"
+  set:html={JSON.stringify(projectsConfig.projects)}
+/>
 
 <script>
-  // Projects Carousel - Coverflow Effect (完全参考 carousel-demo.astro)
+  // Projects Carousel - Coverflow Effect (based on the former carousel-demo reference)
   (function initProjectsCarousel() {
     const carouselUl = document.getElementById("projects-carousel-ul");
     const carouselContainer = carouselUl?.parentElement; // .coverflow-carousel
@@ -86,74 +92,81 @@ import { projectsConfig } from "../config/projects";
       return;
     }
 
-    // 项目数据（从配置文件读取）
-    const projectsData = JSON.parse(document.getElementById('projects-data')?.textContent || '[]');
+    // Project data loaded from config JSON
+    const projectsData = JSON.parse(
+      document.getElementById("projects-data")?.textContent || "[]"
+    );
 
-    // 更新项目介绍（使用上下滚动切换，避免闪烁）
-    const descriptionTrack = document.getElementById("project-description-track");
-    const descriptionViewport = document.querySelector(".project-description-viewport") as HTMLElement;
+    // Update project description with vertical scroll to avoid flicker
+    const descriptionTrack = document.getElementById(
+      "project-description-track"
+    );
+    const descriptionViewport = document.querySelector(
+      ".project-description-viewport"
+    ) as HTMLElement;
     let currentProjectIndex = 0;
     let isScrolling = false;
     let currentTranslateY = 0;
-    
-    // 初始化：设置第一个项目的位置
+
+    // Initialize: position the first project
     function initializeDescriptionPosition() {
       if (!descriptionTrack || !descriptionViewport) return;
-      
+
       const items = descriptionTrack.querySelectorAll(".project-content-item");
       if (items.length === 0) return;
-      
+
       const firstItem = items[0] as HTMLElement;
       if (firstItem) {
-        // 等待布局完成后再计算位置
+        // Wait for layout to complete before measuring
         requestAnimationFrame(() => {
-          // 计算第一个项目需要向上移动的距离，使其在视口顶部显示
+          // Move the first item to align with the viewport top
           const firstItemTop = firstItem.offsetTop;
           currentTranslateY = -firstItemTop;
           descriptionTrack.style.transform = `translateY(${currentTranslateY}px)`;
         });
       }
     }
-    
+
     function updateProjectDescription(projectIndex: number) {
       if (!descriptionTrack || !descriptionViewport || isScrolling) return;
       if (projectIndex === currentProjectIndex) return;
 
       const items = descriptionTrack.querySelectorAll(".project-content-item");
       if (items.length === 0) return;
-      
+
       if (projectIndex < 0 || projectIndex >= items.length) return;
 
-      // 获取目标项目的位置
+      // Get target project position
       const targetItem = items[projectIndex] as HTMLElement;
       if (!targetItem) return;
 
-      // 计算目标位置：使目标项目在视口顶部显示
+      // Compute target translate so the project aligns with viewport top
       const targetItemTop = targetItem.offsetTop;
       const targetY = -targetItemTop;
-      
-      // 开始滚动动画
+
+      // Start scroll animation
       isScrolling = true;
       const startY = currentTranslateY;
       const startTime = performance.now();
-      const duration = 500; // 500ms 滚动动画
+      const duration = 500; // 500ms scroll animation
 
       function animateScroll(currentTime: number) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        
-        // 使用 ease-in-out 缓动函数
-        const easeInOutCubic = progress < 0.5
-          ? 4 * progress * progress * progress
-          : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-        
+
+        // Ease-in-out cubic
+        const easeInOutCubic =
+          progress < 0.5
+            ? 4 * progress * progress * progress
+            : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
         currentTranslateY = startY + (targetY - startY) * easeInOutCubic;
         descriptionTrack.style.transform = `translateY(${currentTranslateY}px)`;
 
         if (progress < 1) {
           requestAnimationFrame(animateScroll);
         } else {
-          // 动画完成
+          // Animation done
           currentTranslateY = targetY;
           currentProjectIndex = projectIndex;
           isScrolling = false;
@@ -163,12 +176,12 @@ import { projectsConfig } from "../config/projects";
       requestAnimationFrame(animateScroll);
     }
 
-    const itemWidth = 350; // SVG 图片宽度
+    const itemWidth = 350; // SVG image width
     const gap = 0;
     const totalItems = items.length;
     const cloneCount = totalItems;
 
-    // 创建克隆的 item（前面的克隆：整个列表）
+    // Create cloned items (front clones: full list)
     for (let i = 0; i < cloneCount; i++) {
       const originalItem = items[i];
       const clone = originalItem.cloneNode(true);
@@ -179,7 +192,7 @@ import { projectsConfig } from "../config/projects";
       carouselUl.insertBefore(clone, items[0]);
     }
 
-    // 创建克隆的 item（后面的克隆：整个列表）
+    // Create cloned items (back clones: full list)
     for (let i = 0; i < cloneCount; i++) {
       const originalItem = items[i];
       const clone = originalItem.cloneNode(true);
@@ -190,7 +203,7 @@ import { projectsConfig } from "../config/projects";
       carouselUl.appendChild(clone);
     }
 
-    // 重新获取所有 items（包括克隆的）
+    // Re-fetch all items (including clones)
     const allItems = carouselUl.querySelectorAll(".ticker-item");
     const allImages = carouselUl.querySelectorAll(".coverflow-item");
     const totalVirtualItems = totalItems * 3;
@@ -208,7 +221,7 @@ import { projectsConfig } from "../config/projects";
     let autoPlayTimer: number | null = null;
     let isAutoPlaying = true;
     const autoPlayInterval = 4000;
-    let lastProjectIndex = -1; // 记录上次显示的项目索引
+    let lastProjectIndex = -1; // track last displayed project index
 
     function getOffset(itemIndex: number, scrollX: number) {
       if (!carouselContainer) return 0;
@@ -270,7 +283,8 @@ import { projectsConfig } from "../config/projects";
 
         (item as HTMLElement).style.zIndex = zIndex.toString();
 
-        const xPx = x === "0%" ? 0 : (parseFloat(x as string) / 100) * itemWidth;
+        const xPx =
+          x === "0%" ? 0 : (parseFloat(x as string) / 100) * itemWidth;
 
         img.style.transform = `perspective(500px) translateX(${xPx}px) rotateY(${rotateY}deg) scale(${scale})`;
       });
@@ -327,36 +341,36 @@ import { projectsConfig } from "../config/projects";
       return nearestIndex;
     }
 
-    // 从虚拟索引获取真实项目索引
+    // Map virtual index to real project index
     function getRealProjectIndex(virtualIndex: number): number {
-      // 虚拟索引范围：
-      // 0 ~ cloneCount-1: 前面的克隆
-      // cloneCount ~ cloneCount+totalItems-1: 真实项目
-      // cloneCount+totalItems ~ cloneCount*2+totalItems-1: 后面的克隆
+      // Virtual index ranges:
+      // 0 ~ cloneCount-1: leading clones
+      // cloneCount ~ cloneCount+totalItems-1: real items
+      // cloneCount+totalItems ~ cloneCount*2+totalItems-1: trailing clones
       if (virtualIndex < cloneCount) {
-        // 前面的克隆，映射到对应的真实项目
+        // Leading clones map to corresponding real item
         return virtualIndex;
       } else if (virtualIndex < cloneCount + totalItems) {
-        // 真实项目
+        // Real item
         return virtualIndex - cloneCount;
       } else {
-        // 后面的克隆，映射到对应的真实项目
+        // Trailing clones map to corresponding real item
         return virtualIndex - cloneCount - totalItems;
       }
     }
 
-    // 更新项目介绍（基于当前最近的 item）
+    // Update project description based on nearest item
     function updateProjectDescriptionFromCarousel() {
       const nearestVirtualIndex = findNearestItem();
       const realIndex = getRealProjectIndex(nearestVirtualIndex);
-      // 只在项目真正改变时才更新
+      // Only update when the project actually changes
       if (realIndex !== lastProjectIndex) {
         lastProjectIndex = realIndex;
         updateProjectDescription(realIndex);
       }
     }
 
-    // 根据虚拟索引获取真实项目索引并更新项目介绍（在轮播开始前）
+    // Convert virtual index to real index and update description before animation
     function updateProjectDescriptionForVirtualIndex(virtualIndex: number) {
       const realIndex = getRealProjectIndex(virtualIndex);
       if (realIndex !== lastProjectIndex) {
@@ -366,7 +380,7 @@ import { projectsConfig } from "../config/projects";
     }
 
     function goToItem(virtualIndex: number) {
-      // 在开始轮播动画前，先更新项目介绍
+      // Update description before carousel animation starts
       updateProjectDescriptionForVirtualIndex(virtualIndex);
       const snapX = getSnapPosition(virtualIndex);
       animateTo(snapX);
@@ -427,7 +441,7 @@ import { projectsConfig } from "../config/projects";
         } else {
           animationFrameId = null;
           checkLoopJump();
-          // 动画结束后确保项目介绍已更新到正确位置
+          // After animation finishes, ensure description is in the correct position
           updateProjectDescriptionFromCarousel();
         }
       }
@@ -504,13 +518,13 @@ import { projectsConfig } from "../config/projects";
           } else {
             goToItem(clickedItemIndex);
           }
-            } else {
-              const nearestIndex = findNearestItem();
-              // 在开始动画前更新项目介绍
-              updateProjectDescriptionForVirtualIndex(nearestIndex);
-              const snapX = getSnapPosition(nearestIndex);
-              animateTo(snapX);
-            }
+        } else {
+          const nearestIndex = findNearestItem();
+          // Update description before animation starts
+          updateProjectDescriptionForVirtualIndex(nearestIndex);
+          const snapX = getSnapPosition(nearestIndex);
+          animateTo(snapX);
+        }
 
         dragDistance = 0;
         clickedItemIndex = null;
@@ -565,7 +579,7 @@ import { projectsConfig } from "../config/projects";
         isDragging = false;
 
         const nearestIndex = findNearestItem();
-        // 在开始动画前更新项目介绍
+        // Update description before animation starts
         updateProjectDescriptionForVirtualIndex(nearestIndex);
         const snapX = getSnapPosition(nearestIndex);
         animateTo(snapX);
@@ -588,13 +602,12 @@ import { projectsConfig } from "../config/projects";
 
     updateTransforms();
 
-    // 初始化项目介绍位置
+    // Initialize description position
     initializeDescriptionPosition();
-    
-    // 初始化项目介绍（显示第一个项目，但不滚动）
+
+    // Initialize description (show first project without scrolling)
     currentProjectIndex = 0;
 
     startAutoPlay();
   })();
 </script>
-

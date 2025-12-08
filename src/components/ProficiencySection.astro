@@ -292,7 +292,7 @@
 </section>
 
 <script>
-  // 数字动画函数 - 从0计数到目标值
+  // Number animation: count from 0 to target
   function animateNumber(
     element: HTMLElement,
     target: number,
@@ -305,7 +305,7 @@
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
 
-      // 使用缓动函数
+    // Ease-out function
       const easeOutQuart = 1 - Math.pow(1 - progress, 4);
       const current = Math.floor(start + (target - start) * easeOutQuart);
 
@@ -321,7 +321,7 @@
     requestAnimationFrame(update);
   }
 
-  // 圆环进度条动画函数
+  // Circular progress animation
   function animateCircularProgress(
     circle: SVGCircleElement,
     percentage: number,
@@ -337,7 +337,7 @@
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
 
-      // 使用缓动函数
+    // Ease-out function
       const easeOutQuart = 1 - Math.pow(1 - progress, 4);
       const currentPercentage = percentage * easeOutQuart;
       const currentOffset =
@@ -358,7 +358,7 @@
     requestAnimationFrame(update);
   }
 
-  // 使用 Intersection Observer 检测滚动
+  // Use Intersection Observer to trigger on scroll
   const proficiencySection = document.getElementById("proficiency-section");
   let hasAnimated = false;
 
@@ -369,7 +369,7 @@
           if (entry.isIntersecting && !hasAnimated) {
             hasAnimated = true;
 
-            // 获取所有技能卡片
+            // Get all skill cards
             const skillCards =
               proficiencySection.querySelectorAll(".skill-card");
 
@@ -386,19 +386,19 @@
                 );
 
                 if (percentageElement && progressCircle) {
-                  // 启动数字动画
+                  // Start number animation
                   animateNumber(percentageElement, percentage);
 
-                  // 启动圆环动画
+                  // Start circular progress animation
                   animateCircularProgress(progressCircle, percentage);
                 }
-              }, index * 150); // 每个技能延迟150ms，形成依次动画效果
+              }, index * 150); // Stagger each skill by 150ms
             });
           }
         });
       },
       {
-        threshold: 0.3, // 当30%的区域可见时触发
+        threshold: 0.3, // Trigger when 30% is visible
       }
     );
 
