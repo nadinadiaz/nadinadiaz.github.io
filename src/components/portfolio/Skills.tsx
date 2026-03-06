@@ -1,6 +1,13 @@
 import { motion } from "framer-motion";
+import { ExternalLink } from "lucide-react";
 
-const skillGroups = [
+interface SkillGroup {
+  category: string;
+  skills: string[];
+  certLink?: string;
+}
+
+const skillGroups: SkillGroup[] = [
   {
     category: "Bioingeniera — UNER",
     skills: ["Biomecánica", "Bioestadística", "Metodología de la Investigación", "Terminología Sanitaria", "Fisiología", "Procesamiento de Señales", "Instrumentación Biomédica", "Gestión Hospitalaria"],
