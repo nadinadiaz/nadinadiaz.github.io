@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Github, Lock } from "lucide-react";
+import { ExternalLink, Github, Lock, FileText } from "lucide-react";
 
 const projects = [
   {
@@ -8,6 +8,9 @@ const projects = [
       "Análisis de caso completo aplicando el framework de análisis de datos de Google: Ask, Prepare, Process, Analyze, Share, Act. Incluye limpieza de datos, análisis exploratorio y visualización con R.",
     tags: ["R", "SQL", "Tableau", "Data Cleaning"],
     status: "completed" as const,
+    image: "/placeholder.svg",
+    deliverableUrl: "#",
+    markdownUrl: "#",
   },
   {
     title: "Capstone – Google Project Management",
@@ -15,6 +18,9 @@ const projects = [
       "Proyecto de gestión aplicando metodologías ágiles y herramientas de planificación. Documentación completa del ciclo de vida del proyecto.",
     tags: ["Agile", "Scrum", "Project Charter", "Stakeholders"],
     status: "in-progress" as const,
+    image: "/placeholder.svg",
+    deliverableUrl: "#",
+    markdownUrl: "#",
   },
   {
     title: "Análisis de Datos en Bioinvestigación",
@@ -22,6 +28,7 @@ const projects = [
       "Proyecto personal integrando datos de investigación biomédica con herramientas de analytics modernas para generar insights accionables.",
     tags: ["Python", "SQL", "Data Viz", "Biodata"],
     status: "planned" as const,
+    image: "/placeholder.svg",
   },
 ];
 
@@ -54,28 +61,61 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="glass rounded-xl p-7 flex flex-col hover:border-primary/30 transition-colors group"
+              className="glass rounded-xl overflow-hidden flex flex-col hover:border-primary/30 transition-colors group"
             >
-              <div className="flex items-center justify-between mb-4">
-                <span className={`text-xs px-3 py-1 rounded-full font-medium ${statusLabel[p.status].class}`}>
-                  {statusLabel[p.status].text}
-                </span>
-                {p.status === "completed" ? (
-                  <ExternalLink size={16} className="text-muted-foreground group-hover:text-primary transition-colors" />
-                ) : (
-                  <Lock size={16} className="text-muted-foreground/50" />
-                )}
+              {/* Project image */}
+              <div className="relative aspect-video overflow-hidden bg-secondary/50">
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3">
+                  <span className={`text-xs px-3 py-1 rounded-full font-medium ${statusLabel[p.status].class}`}>
+                    {statusLabel[p.status].text}
+                  </span>
+                </div>
               </div>
 
-              <h3 className="text-lg font-semibold text-foreground mb-3">{p.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1">{p.description}</p>
+              <div className="p-7 flex flex-col flex-1">
+                <h3 className="text-lg font-semibold text-foreground mb-3">{p.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1">{p.description}</p>
 
-              <div className="flex flex-wrap gap-2">
-                {p.tags.map((tag) => (
-                  <span key={tag} className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground">
-                    {tag}
-                  </span>
-                ))}
+                <div className="flex flex-wrap gap-2 mb-5">
+                  {p.tags.map((tag) => (
+                    <span key={tag} className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Links */}
+                {(p.deliverableUrl || p.markdownUrl) && (
+                  <div className="flex gap-3 pt-4 border-t border-border/50">
+                    {p.deliverableUrl && (
+                      <a
+                        href={p.deliverableUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        <ExternalLink size={14} />
+                        Ver entregable
+                      </a>
+                    )}
+                    {p.markdownUrl && (
+                      <a
+                        href={p.markdownUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        <Github size={14} />
+                        Markdown
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}
