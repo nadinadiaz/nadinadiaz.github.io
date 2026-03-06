@@ -19,6 +19,7 @@ const skillGroups: SkillGroup[] = [
   {
     category: "Google Data Analytics Professional Certificate",
     skills: ["SQL", "R / RStudio", "Google Sheets", "Tableau", "Data Cleaning", "EDA"],
+    certLink: "#", // Reemplazar con tu link de Credly
   },
   {
     category: "Google Project Management Certificate",
