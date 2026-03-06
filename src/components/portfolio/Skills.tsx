@@ -2,20 +2,20 @@ import { motion } from "framer-motion";
 
 const skillGroups = [
   {
-    category: "Análisis de Datos",
+    category: "Bioingeniera — UNER",
+    skills: ["Biomecánica", "Bioestadística", "Metodología de la Investigación", "Terminología Sanitaria", "Fisiología", "Procesamiento de Señales", "Instrumentación Biomédica", "Gestión Hospitalaria"],
+  },
+  {
+    category: "Esp. Higiene y Seguridad en el Trabajo — UTN",
+    skills: ["Evaluación de Riesgos", "Capacitación en Seguridad", "Normativa Legal", "Ergonomía", "Plan de Emergencias", "Auditoría de Seguridad"],
+  },
+  {
+    category: "Google Data Analytics Professional Certificate",
     skills: ["SQL", "R / RStudio", "Google Sheets", "Tableau", "Data Cleaning", "EDA"],
   },
   {
-    category: "Gestión de Proyectos",
+    category: "Google Project Management Certificate",
     skills: ["Agile / Scrum", "Project Charter", "Risk Management", "Stakeholder Analysis", "Asana"],
-  },
-  {
-    category: "Investigación",
-    skills: ["Metodología Científica", "Redacción Técnica", "Validación de Hipótesis", "Revisión Bibliográfica"],
-  },
-  {
-    category: "Certificaciones",
-    skills: ["Google Data Analytics (2025)", "Google Project Management (en curso)"],
   },
 ];
 
@@ -29,9 +29,9 @@ const Skills = () => {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <p className="text-sm uppercase tracking-[0.2em] text-primary mb-3">Competencias</p>
+          <p className="text-sm uppercase tracking-[0.2em] text-primary mb-3">Formación</p>
           <div className="glow-line w-16 mb-6" />
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">Habilidades & Certificaciones</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">Educación & Certificaciones</h2>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
