@@ -4,11 +4,12 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
   { label: "Sobre mí", href: "#about" },
-  { label: "Experiencia", href: "#experience" },
   { label: "Proyectos", href: "#projects" },
   { label: "Habilidades", href: "#skills" },
   { label: "Contacto", href: "#contact" },
+  { label: "CV", href: "#", external: true },
 ];
+
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
