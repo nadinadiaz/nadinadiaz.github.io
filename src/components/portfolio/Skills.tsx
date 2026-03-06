@@ -1,6 +1,13 @@
 import { motion } from "framer-motion";
+import { ExternalLink } from "lucide-react";
 
-const skillGroups = [
+interface SkillGroup {
+  category: string;
+  skills: string[];
+  certLink?: string;
+}
+
+const skillGroups: SkillGroup[] = [
   {
     category: "Bioingeniera — UNER",
     skills: ["Biomecánica", "Bioestadística", "Metodología de la Investigación", "Terminología Sanitaria", "Fisiología", "Procesamiento de Señales", "Instrumentación Biomédica", "Gestión Hospitalaria"],
@@ -12,6 +19,7 @@ const skillGroups = [
   {
     category: "Google Data Analytics Professional Certificate",
     skills: ["SQL", "R / RStudio", "Google Sheets", "Tableau", "Data Cleaning", "EDA"],
+    certLink: "#", // Reemplazar con tu link de Credly
   },
   {
     category: "Google Project Management Certificate",
@@ -55,6 +63,17 @@ const Skills = () => {
                   </span>
                 ))}
               </div>
+              {group.certLink && (
+                <a
+                  href={group.certLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mt-5 text-sm text-primary hover:text-primary/80 transition-colors"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Ver certificado en Credly
+                </a>
+              )}
             </motion.div>
           ))}
         </div>
