@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const links = [
   { label: "Sobre mí", href: "#about" },
   { label: "Proyectos", href: "#projects" },
-  { label: "Habilidades", href: "#skills" },
+  { label: "Educación", href: "#skills" },
   { label: "Contacto", href: "#contact" },
   { label: "CV", href: "#", external: true },
 ];
