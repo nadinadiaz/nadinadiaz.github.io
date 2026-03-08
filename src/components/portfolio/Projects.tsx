@@ -5,7 +5,7 @@ const projects = [
   {
     title: "Capstone – Google Data Analytics",
     description:
-      "Análisis de caso completo aplicando el framework de análisis de datos de Google: Ask, Prepare, Process, Analyze, Share, Act. Incluye limpieza de datos, análisis exploratorio y visualización con R.",
+      "Análisis de datos de uso de dispositivos inteligentes para identificar patrones de comportamiento y generar información de marketing para la empresa de bienestar Bellabeat. El proyecto incluye la limpieza de datos, el análisis exploratorio y la visualización de datos para respaldar recomendaciones estratégicas.",
     tags: ["R", "SQL", "Tableau", "Data Cleaning"],
     status: "completed" as const,
     image: "/placeholder.svg",
