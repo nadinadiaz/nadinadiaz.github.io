@@ -22,7 +22,7 @@ const Hero = () => {
           className="text-sm uppercase tracking-[0.3em] mb-6"
           style={{ color: 'hsl(var(--accent))' }}
         >
-          Bioingeniería · Data Analytics · Project Management
+          Bioingeniería · Data Analytics · Business Insights
         </motion.p>
 
         <motion.h1
@@ -44,9 +44,9 @@ const Hero = () => {
           className="text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed"
           style={{ color: 'hsl(220 15% 70%)' }}
         >
-          Bioingeniera con 15+ años en investigación, 
-          transicionando hacia Data Analytics y Project Management. 
-          Transformo datos complejos en decisiones claras.
+          Bioingeniera con más de 15 años analizando datos en investigación científica.
+          {' '}Hoy aplico ese enfoque analítico al análisis de datos de negocio
+          para transformar datos complejos en decisiones claras.
         </motion.p>
 
         <motion.div
