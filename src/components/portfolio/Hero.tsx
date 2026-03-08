@@ -57,9 +57,10 @@ const Hero = () => {
         >
           <a
             href="#projects"
-            className="px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity"
+            className="px-10 py-4 rounded-lg bg-primary text-primary-foreground font-semibold text-base hover:opacity-90 transition-opacity flex items-center gap-2 justify-center"
           >
             Ver Proyectos
+            <ArrowDown size={20} className="animate-bounce" />
           </a>
           <a
             href="#contact"
