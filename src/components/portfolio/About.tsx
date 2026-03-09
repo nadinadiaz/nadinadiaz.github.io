@@ -21,7 +21,7 @@ const highlights = [
 
 const About = () => {
   return (
-    <section id="about" className="py-24 px-6 bg-background">
+    <section id="about" className="py-24 px-6 bg-section text-section-foreground">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -31,10 +31,10 @@ const About = () => {
         >
           <p className="text-sm uppercase tracking-[0.2em] text-primary mb-3">Sobre mí</p>
           <div className="glow-line w-16 mb-6" />
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-section-foreground mb-6">
             De la investigación a los datos
           </h2>
-          <p className="text-muted-foreground max-w-2xl text-lg leading-relaxed">
+          <p className="text-section-foreground/70 max-w-2xl text-lg leading-relaxed">
             Soy Bioingeniera con más de una década de experiencia en metodología de la investigación y documentación técnica. 
             Actualmente estoy transicionando hacia el análisis de datos y la gestión de proyectos, 
             combinando mi rigurosidad científica con herramientas modernas de análisis.
@@ -49,13 +49,13 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15 }}
-              className="glass rounded-xl p-8 hover:border-primary/30 transition-colors group"
+              className="rounded-xl p-8 bg-white border border-section-foreground/10 hover:border-primary/30 transition-colors group shadow-sm"
             >
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
                 <h.icon size={22} className="text-primary" />
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-3">{h.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{h.desc}</p>
+              <h3 className="text-lg font-semibold text-section-foreground mb-3">{h.title}</h3>
+              <p className="text-section-foreground/60 text-sm leading-relaxed">{h.desc}</p>
             </motion.div>
           ))}
         </div>

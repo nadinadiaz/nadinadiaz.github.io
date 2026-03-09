@@ -33,14 +33,14 @@ const projects = [
 ];
 
 const statusLabel = {
-  completed: { text: "Completado", class: "bg-accent/15 text-accent" },
-  "in-progress": { text: "En curso", class: "bg-primary/15 text-primary" },
-  planned: { text: "Próximamente", class: "bg-muted text-muted-foreground" },
+  completed: { text: "Completado", class: "bg-primary/15 text-primary" },
+  "in-progress": { text: "En curso", class: "bg-primary/10 text-primary" },
+  planned: { text: "Próximamente", class: "bg-section-foreground/10 text-section-foreground/60" },
 };
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-24 px-6 bg-background">
+    <section id="projects" className="py-24 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -50,7 +50,7 @@ const Projects = () => {
         >
           <p className="text-sm uppercase tracking-[0.2em] text-primary mb-3">Portfolio</p>
           <div className="glow-line w-16 mb-6" />
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">Proyectos</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-section-foreground">Proyectos</h2>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -61,10 +61,10 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="glass rounded-xl overflow-hidden flex flex-col hover:border-primary/30 transition-colors group"
+              className="rounded-xl overflow-hidden flex flex-col bg-section border border-section-foreground/10 hover:border-primary/30 transition-colors group shadow-sm"
             >
               {/* Project image */}
-              <div className="relative aspect-video overflow-hidden bg-secondary/50">
+              <div className="relative aspect-video overflow-hidden bg-section-foreground/5">
                 <img
                   src={p.image}
                   alt={p.title}
@@ -78,12 +78,12 @@ const Projects = () => {
               </div>
 
               <div className="p-7 flex flex-col flex-1">
-                <h3 className="text-lg font-semibold text-foreground mb-3">{p.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1">{p.description}</p>
+                <h3 className="text-lg font-semibold text-section-foreground mb-3">{p.title}</h3>
+                <p className="text-sm text-section-foreground/60 leading-relaxed mb-5 flex-1">{p.description}</p>
 
                 <div className="flex flex-wrap gap-2 mb-5">
                   {p.tags.map((tag) => (
-                    <span key={tag} className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground">
+                    <span key={tag} className="text-xs px-2.5 py-1 rounded-md bg-section-foreground/8 text-section-foreground/70">
                       {tag}
                     </span>
                   ))}
@@ -91,13 +91,13 @@ const Projects = () => {
 
                 {/* Links */}
                 {(p.deliverableUrl || p.markdownUrl) && (
-                  <div className="flex gap-3 pt-4 border-t border-border/50">
+                  <div className="flex gap-3 pt-4 border-t border-section-foreground/10">
                     {p.deliverableUrl && (
                       <a
                         href={p.deliverableUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors"
+                        className="flex items-center gap-2 text-xs text-section-foreground/50 hover:text-primary transition-colors"
                       >
                         <ExternalLink size={14} />
                         Ver entregable
@@ -108,7 +108,7 @@ const Projects = () => {
                         href={p.markdownUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors"
+                        className="flex items-center gap-2 text-xs text-section-foreground/50 hover:text-primary transition-colors"
                       >
                         <Github size={14} />
                         Markdown
