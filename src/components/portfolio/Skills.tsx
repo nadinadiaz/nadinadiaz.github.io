@@ -29,7 +29,7 @@ const skillGroups: SkillGroup[] = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-24 px-6 bg-background">
+    <section id="skills" className="py-24 px-6 bg-section">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -39,7 +39,7 @@ const Skills = () => {
         >
           <p className="text-sm uppercase tracking-[0.2em] text-primary mb-3">Formación</p>
           <div className="glow-line w-16 mb-6" />
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">Educación & Certificaciones</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-section-foreground">Educación & Certificaciones</h2>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
@@ -50,14 +50,14 @@ const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="glass rounded-xl p-7"
+              className="rounded-xl p-7 bg-white border border-section-foreground/10 shadow-sm"
             >
               <h3 className="text-sm uppercase tracking-widest text-primary font-medium mb-5">{group.category}</h3>
               <div className="flex flex-wrap gap-2.5">
                 {group.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="text-sm px-4 py-2 rounded-lg bg-secondary text-foreground border border-border/50 hover:border-primary/30 transition-colors"
+                    className="text-sm px-4 py-2 rounded-lg bg-section text-section-foreground border border-section-foreground/10 hover:border-primary/30 transition-colors"
                   >
                     {skill}
                   </span>
