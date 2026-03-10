@@ -65,11 +65,11 @@ const Projects = () => {
               className="rounded-xl overflow-hidden flex flex-col bg-section border border-section-foreground/10 hover:border-primary/30 transition-colors group shadow-sm"
             >
               {/* Project image */}
-              <div className="relative aspect-video overflow-hidden bg-section-foreground/5">
+              <div className="relative aspect-video overflow-hidden bg-section-foreground/10">
                 <img
                   src={p.image}
                   alt={p.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${p.image === capstoneBellabeat ? 'object-contain' : 'object-cover'}`}
                 />
                 <div className="absolute top-3 left-3">
                   <span className={`text-xs px-3 py-1 rounded-full font-medium ${statusLabel[p.status].class}`}>
