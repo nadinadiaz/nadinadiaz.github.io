@@ -42,7 +42,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
           className="text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed"
-          style={{ color: 'hsl(220 15% 70%)' }}
+          style={{ color: 'hsl(220 15% 82%)' }}
         >
           Bioingeniera con más de 15 años analizando datos en investigación científica.
           {' '}Hoy aplico ese enfoque analítico al análisis de datos de negocio
