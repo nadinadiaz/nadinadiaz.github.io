@@ -72,11 +72,13 @@ const Projects = () => {
                   alt={p.title}
                   className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${p.image === capstoneBellabeat ? 'object-contain' : 'object-cover'}`}
                 />
-                <div className="absolute top-3 left-3">
-                  <span className={`text-xs px-3 py-1 rounded-full font-medium ${statusLabel[p.status].class}`}>
-                    {statusLabel[p.status].text}
-                  </span>
-                </div>
+                {p.status === "planned" && (
+                  <div className="absolute top-3 left-3">
+                    <span className={`text-xs px-3 py-1 rounded-full font-medium ${statusLabel[p.status].class}`}>
+                      {statusLabel[p.status].text}
+                    </span>
+                  </div>
+                )}
               </div>
 
               <div className="p-7 flex flex-col flex-1">
