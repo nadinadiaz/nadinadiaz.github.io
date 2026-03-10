@@ -21,7 +21,7 @@ const projects = [
     tags: ["Agile", "Scrum", "Project Charter", "Stakeholders"],
     status: "in-progress" as const,
     image: capstoneCyclistic,
-    deliverableUrl: "#",
+    deliverableUrl: "/docs/Comportamiento_de_usuarios_en_Cyclistic.pdf",
     markdownUrl: "#",
   },
   {
