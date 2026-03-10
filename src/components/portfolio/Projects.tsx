@@ -15,7 +15,7 @@ const projects = [
     markdownUrl: "#",
   },
   {
-    title: "Capstone – Google Project Management",
+    title: "Conversión de Usuarios Casuales a Anuales: Un Enfoque de Gestión de Proyectos",
     description:
       "Proyecto de gestión aplicando metodologías ágiles y herramientas de planificación. Documentación completa del ciclo de vida del proyecto.",
     tags: ["Agile", "Scrum", "Project Charter", "Stakeholders"],
