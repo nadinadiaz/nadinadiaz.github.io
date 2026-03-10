@@ -9,7 +9,7 @@ const projects = [
       "Análisis de datos de uso de dispositivos inteligentes para identificar patrones de comportamiento y generar información de marketing para la empresa de bienestar Bellabeat. El proyecto incluye la limpieza de datos, el análisis exploratorio y la visualización de datos para respaldar recomendaciones estratégicas.",
     tags: ["R", "Data Cleaning", "EDA", "Data Visualization"],
     status: "completed" as const,
-    image: "/placeholder.svg",
+    image: capstoneBellabeat,
     deliverableUrl: "#",
     markdownUrl: "#",
   },
