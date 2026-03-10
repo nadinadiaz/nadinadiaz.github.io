@@ -5,7 +5,7 @@ import capstoneCyclistic from "@/assets/capstone-cyclistic.png";
 
 const projects = [
   {
-    title: "Capstone – Google Data Analytics",
+    title: "Insights de Datos de Actividad Física: El caso Bellabeat",
     description:
       "Análisis de datos de uso de dispositivos inteligentes para identificar patrones de comportamiento y generar información de marketing para la empresa de bienestar Bellabeat. El proyecto incluye la limpieza de datos, el análisis exploratorio y la visualización de datos para respaldar recomendaciones estratégicas.",
     tags: ["R", "Data Cleaning", "EDA", "Data Visualization"],
@@ -15,7 +15,7 @@ const projects = [
     markdownUrl: "#",
   },
   {
-    title: "Capstone – Google Project Management",
+    title: "Conversión de Usuarios Casuales a Anuales: Un Enfoque de Gestión de Proyectos",
     description:
       "Proyecto de gestión aplicando metodologías ágiles y herramientas de planificación. Documentación completa del ciclo de vida del proyecto.",
     tags: ["Agile", "Scrum", "Project Charter", "Stakeholders"],
