@@ -20,7 +20,7 @@ const projects = [
       "Proyecto de gestión aplicando metodologías ágiles y herramientas de planificación. Documentación completa del ciclo de vida del proyecto.",
     tags: ["Agile", "Scrum", "Project Charter", "Stakeholders"],
     status: "in-progress" as const,
-    image: "/placeholder.svg",
+    image: capstoneCyclistic,
     deliverableUrl: "#",
     markdownUrl: "#",
   },
