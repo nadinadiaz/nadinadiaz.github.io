@@ -5,9 +5,8 @@ import capstoneCyclistic from "@/assets/capstone-cyclistic.png";
 
 const projects = [
   {
-    title: "Insights de Datos de Actividad Física: El caso Bellabeat",
-    description:
-      "Análisis de datos de uso de dispositivos inteligentes para identificar patrones de comportamiento y generar información de marketing para la empresa de bienestar Bellabeat. El proyecto incluye la limpieza de datos, el análisis exploratorio y la visualización de datos para respaldar recomendaciones estratégicas.",
+    title: "Análisis de Datos de Actividad Física para Estrategia de Marketing – Caso Bellabeat",
+    description: "Análisis de datos de uso de dispositivos inteligentes para identificar patrones de comportamiento en usuarios de bienestar digital.El proyecto incluye limpieza y preparación de datos, análisis exploratorio y visualización para detectar tendencias en actividad física y hábitos de uso.Los resultados permiten generar insights que pueden apoyar decisiones de marketing y estrategias de engagement para la empresa Bellabeat.",
     tags: ["R", "Data Cleaning", "EDA", "Data Visualization"],
     status: "completed" as const,
     image: capstoneBellabeat,
@@ -15,9 +14,9 @@ const projects = [
     markdownUrl: "#",
   },
   {
-    title: "Conversión de Usuarios Casuales a Anuales: Un Enfoque de Gestión de Proyectos",
+    title: "Análisis de Comportamiento de Usuarios en Cyclistic",
     description:
-      "Proyecto de gestión aplicando metodologías ágiles y herramientas de planificación. Documentación completa del ciclo de vida del proyecto.",
+      "Análisis de datos de uso del sistema de bicicletas compartidas Cyclistic para identificar diferencias de comportamiento entre usuarios casuales y miembros anuales.El proyecto incluye limpieza y procesamiento de grandes volúmenes de datos, análisis exploratorio y visualización para detectar patrones en la duración de los viajes, frecuencia de uso y horarios de actividad.      Los resultados permiten proponer estrategias orientadas a convertir usuarios casuales en suscriptores anuales.",
     tags: ["Agile", "Scrum", "Project Charter", "Stakeholders"],
     status: "in-progress" as const,
     image: capstoneCyclistic,
