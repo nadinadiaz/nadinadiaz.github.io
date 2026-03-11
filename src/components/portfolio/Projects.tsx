@@ -17,7 +17,7 @@ const projects = [
     title: "Análisis de Comportamiento de Usuarios en Cyclistic",
     description:
       "Análisis de datos de uso del sistema de bicicletas compartidas Cyclistic para identificar diferencias de comportamiento entre usuarios casuales y miembros anuales.El proyecto incluye limpieza y procesamiento de grandes volúmenes de datos, análisis exploratorio y visualización para detectar patrones en la duración de los viajes, frecuencia de uso y horarios de actividad.      Los resultados permiten proponer estrategias orientadas a convertir usuarios casuales en suscriptores anuales.",
-    tags: ["Agile", "Scrum", "Project Charter", "Stakeholders"],
+    tags: ["R", "Data Cleaning", "EDA", "Data Visualization"],
     status: "in-progress" as const,
     image: capstoneCyclistic,
     deliverableUrl: "/docs/Comportamiento_de_usuarios_en_Cyclistic.pdf",
