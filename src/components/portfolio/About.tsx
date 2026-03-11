@@ -35,9 +35,9 @@ const About = () => {
             Mi enfoque analítico
           </h2>
           <p className="text-section-foreground/70 max-w-2xl text-lg leading-relaxed">
-            Soy Bioingeniera con más de una década de experiencia en metodología de la investigación y documentación técnica. 
-            Actualmente estoy transicionando hacia el análisis de datos y la gestión de proyectos, 
-            combinando mi rigurosidad científica con herramientas modernas de análisis.
+            Durante más de 15 años trabajé en investigación científica analizando datos complejos para identificar patrones, validar hipótesis y generar conocimiento confiable.
+            Esa experiencia me permitió desarrollar un enfoque analítico riguroso, basado en la exploración profunda de los datos, la validación de resultados y la comunicación clara de los hallazgos.
+            Hoy aplico ese mismo método al análisis de datos de negocio, utilizando herramientas como SQL, R y Excel para transformar información en insights que apoyen la toma de decisiones.
           </p>
         </motion.div>
 
