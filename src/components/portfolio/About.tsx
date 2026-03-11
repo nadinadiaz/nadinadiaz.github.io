@@ -32,7 +32,7 @@ const About = () => {
           <p className="text-sm uppercase tracking-[0.2em] text-primary mb-3">Sobre mí</p>
           <div className="glow-line w-16 mb-6" />
           <h2 className="text-3xl md:text-4xl font-bold text-section-foreground mb-6">
-            De la investigación a los datos
+            Mi enfoque analítico
           </h2>
           <p className="text-section-foreground/70 max-w-2xl text-lg leading-relaxed">
             Soy Bioingeniera con más de una década de experiencia en metodología de la investigación y documentación técnica. 
