@@ -4,18 +4,18 @@ import { Database, FlaskConical, Lightbulb } from "lucide-react";
 const highlights = [
   {
     icon: FlaskConical,
-    title: "Investigación",
-    desc: "15+ años supervisando metodología de investigación en sectores médico, agro y petroquímico.",
+    title: "Pensamiento analítico",
+    desc: "Experiencia analizando datos complejos en investigación científica, aplicando métodos rigurosos para identificar patrones y validar resultados.",
   },
   {
     icon: Database,
-    title: "Data Analytics",
-    desc: "Google Data Analytics Professional Certificate. SQL, R, visualización de datos y storytelling.",
+    title: "Exploración y análisis de datos",
+    desc: "Uso herramientas como SQL, R y Excel para explorar datasets, detectar tendencias y generar insights accionables.",
   },
   {
     icon: Lightbulb,
-    title: "Project Management",
-    desc: "Cursando Google Project Management Certificate. Gestión ágil y ciclo de vida de proyectos.",
+    title: "Comunicación de resultados",
+    desc: "Transformo análisis complejos en visualizaciones y conclusiones claras que faciliten la toma de decisiones.",
   },
 ];
 
