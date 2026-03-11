@@ -21,7 +21,7 @@ const projects = [
     status: "in-progress" as const,
     image: capstoneCyclistic,
     deliverableUrl: "/docs/Comportamiento_de_usuarios_en_Cyclistic.pdf",
-    markdownUrl: "#",
+    markdownUrl: "https://github.com/nadinadiaz/Capstone-Cyclistic-2025",
   },
   {
     title: "Análisis de Datos en Bioinvestigación",
