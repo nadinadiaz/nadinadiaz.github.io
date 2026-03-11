@@ -10,7 +10,7 @@ const highlights = [
   {
     icon: Database,
     title: "Exploración y análisis de datos",
-    desc: "Uso herramientas como SQL, R y Excel para explorar datasets, detectar tendencias y generar insights accionables.",
+    desc: "Uso herramientas como SQL, R y Excel para explorar datos, detectar tendencias y generar insights accionables.",
   },
   {
     icon: Lightbulb,
@@ -36,8 +36,8 @@ const About = () => {
           </h2>
           <p className="text-section-foreground/70 max-w-2xl text-lg leading-relaxed">
             Durante más de 15 años trabajé en investigación científica analizando datos complejos para identificar patrones, validar hipótesis y generar conocimiento confiable.
-            Esa experiencia me permitió desarrollar un enfoque analítico riguroso, basado en la exploración profunda de los datos, la validación de resultados y la comunicación clara de los hallazgos.
-            Hoy aplico ese mismo método al análisis de datos de negocio, utilizando herramientas como SQL, R y Excel para transformar información en insights que apoyen la toma de decisiones.
+            Esta experiencia me permitió desarrollar un enfoque analítico riguroso basado en la exploración profunda de los datos, la validación de resultados y la comunicación clara de hallazgos.
+            Actualmente aplico ese mismo método al análisis de datos de negocio, utilizando herramientas como SQL, R y Excel para transformar información en insights que apoyen la toma de decisiones.
           </p>
         </motion.div>
 
