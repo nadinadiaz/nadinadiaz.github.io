@@ -103,7 +103,7 @@ const Projects = () => {
                         className="flex items-center gap-2 text-xs text-section-foreground/50 hover:text-primary transition-colors"
                       >
                         <ExternalLink size={14} />
-                        Ver caso de estudio
+                        Caso de estudio
                       </a>
                     )}
                     {p.markdownUrl && (
@@ -114,7 +114,7 @@ const Projects = () => {
                         className="flex items-center gap-2 text-xs text-section-foreground/50 hover:text-primary transition-colors"
                       >
                         <Github size={14} />
-                        Ver código (GitHub)
+                        Código (GitHub)
                       </a>
                     )}
                   </div>
