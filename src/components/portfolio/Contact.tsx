@@ -34,7 +34,7 @@ const Contact = () => {
               <Linkedin size={22} className="text-section-foreground/50 group-hover:text-primary transition-colors" />
             </a>
             <a
-              href="https://github.com/nadinadiaz/"
+              href="https:www.github.com/nadinadiaz/"
               target="_blank"
               rel="noopener noreferrer"
               className="w-14 h-14 rounded-xl bg-section border border-section-foreground/10 flex items-center justify-center hover:border-primary/50 transition-colors group shadow-sm"
