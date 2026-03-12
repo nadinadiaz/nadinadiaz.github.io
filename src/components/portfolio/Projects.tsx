@@ -6,7 +6,7 @@ import capstoneCyclistic from "@/assets/capstone-cyclistic.png";
 const projects = [
   {
     title: "Análisis de Datos de Actividad Física para Estrategia de Marketing – Caso Bellabeat",
-    description: "Análisis de datos de uso de dispositivos inteligentes para identificar patrones de comportamiento en usuarios de bienestar digital.El proyecto incluye limpieza y preparación de datos, análisis exploratorio y visualización para detectar tendencias en actividad física y hábitos de uso.Los resultados permiten generar insights que pueden apoyar decisiones de marketing y estrategias de engagement para la empresa Bellabeat.",
+    description: "Análisis de datos de uso de dispositivos inteligentes para identificar patrones de actividad física y hábitos de usuarios.Incluye limpieza de datos, análisis exploratorio y visualización para detectar tendencias relevantes.Los resultados permiten generar insights que apoyen decisiones de marketing y estrategias de engagement.",
     tags: ["R", "Data Cleaning", "EDA", "Data Visualization"],
     status: "completed" as const,
     image: capstoneBellabeat,
@@ -16,7 +16,7 @@ const projects = [
   {
     title: "Análisis de Comportamiento de Usuarios en Cyclistic",
     description:
-      "Análisis de datos de uso del sistema de bicicletas compartidas Cyclistic para identificar diferencias de comportamiento entre usuarios casuales y miembros anuales.El proyecto incluye limpieza y procesamiento de grandes volúmenes de datos, análisis exploratorio y visualización para detectar patrones en la duración de los viajes, frecuencia de uso y horarios de actividad.      Los resultados permiten proponer estrategias orientadas a convertir usuarios casuales en suscriptores anuales.",
+      "Análisis de datos del sistema de bicicletas compartidas Cyclistic para identificar diferencias entre usuarios casuales y miembros anuales.El proyecto incluye limpieza de datos, análisis exploratorio y visualización para detectar patrones de uso en duración de viajes, horarios y frecuencia.Los resultados permiten proponer estrategias para aumentar la conversión a suscripciones anuales.",
     tags: ["R", "Data Cleaning", "EDA", "Data Visualization"],
     status: "in-progress" as const,
     image: capstoneCyclistic,
