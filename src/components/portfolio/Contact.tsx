@@ -20,13 +20,13 @@ const Contact = () => {
 
           <div className="flex justify-center gap-6">
             <a
-              href="mailto:nadina.diaz@email.com"
+              href="mailto:nadinadiaz@gmail.com"
               className="w-14 h-14 rounded-xl bg-section border border-section-foreground/10 flex items-center justify-center hover:border-primary/50 transition-colors group shadow-sm"
             >
               <Mail size={22} className="text-section-foreground/50 group-hover:text-primary transition-colors" />
             </a>
             <a
-              href="https://linkedin.com/in/"
+              href="https:www.linkedin.com/in/nadina-diaz-9ab5aa364"
               target="_blank"
               rel="noopener noreferrer"
               className="w-14 h-14 rounded-xl bg-section border border-section-foreground/10 flex items-center justify-center hover:border-primary/50 transition-colors group shadow-sm"
