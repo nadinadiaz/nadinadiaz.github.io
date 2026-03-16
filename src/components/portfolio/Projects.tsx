@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github, Lock, FileText } from "lucide-react";
-import capstoneBellabeat from "@/assets/resumen2.png";
+import capstoneBellabeat from "@/assets/resumen3.png";
 import capstoneCyclistic from "@/assets/Cyclist3.png";
 
 const projects = [
