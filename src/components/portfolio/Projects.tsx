@@ -65,7 +65,7 @@ const Projects = () => {
               className="rounded-xl overflow-hidden flex flex-col bg-section border border-section-foreground/10 hover:border-primary/30 transition-colors group shadow-sm"
             >
               {/* Project image */}
-              <div className="relative aspect-video overflow-hidden bg-section-foreground/10">
+              <div className="relative overflow-hidden bg-white">
                 <img
                   src={p.image}
                   alt={p.title}
