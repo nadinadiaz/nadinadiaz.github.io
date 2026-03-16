@@ -6,7 +6,7 @@ import capstoneCyclistic from "@/assets/Cyclist3.png";
 const projects = [
   {
     title: "Análisis de Datos de Actividad Física para Estrategia de Marketing – Caso Bellabeat",
-    description: "Análisis de datos de uso de dispositivos inteligentes para identificar patrones de actividad física y hábitos de usuarios.Incluye limpieza de datos, análisis exploratorio y visualización para detectar tendencias relevantes.Los resultados permiten generar insights que apoyen decisiones de marketing y estrategias de engagement.",
+    description: "Análisis de datos de uso de dispositivos inteligentes para identificar patrones de actividad física y hábitos de usuarios. Incluye limpieza de datos, análisis exploratorio y visualización para detectar tendencias relevantes. Los resultados permiten generar insights que apoyen decisiones de marketing y estrategias de engagement.",
     tags: ["R", "Data Cleaning", "EDA", "Data Visualization"],
     status: "completed" as const,
     image: capstoneBellabeat,
@@ -16,7 +16,7 @@ const projects = [
   {
     title: "Análisis de Comportamiento de Usuarios en Cyclistic",
     description:
-      "Análisis de datos del sistema de bicicletas compartidas Cyclistic para identificar diferencias entre usuarios casuales y miembros anuales.El proyecto incluye limpieza de datos, análisis exploratorio y visualización para detectar patrones de uso en duración de viajes, horarios y frecuencia.Los resultados permiten proponer estrategias para aumentar la conversión a suscripciones anuales.",
+      "Análisis de datos del sistema de bicicletas compartidas Cyclistic para identificar diferencias entre usuarios casuales y miembros anuales. El proyecto incluye limpieza de datos, análisis exploratorio y visualización para detectar patrones de uso en duración de viajes, horarios y frecuencia. Los resultados permiten proponer estrategias para aumentar la conversión a suscripciones anuales.",
     tags: ["R", "Data Cleaning", "EDA", "Data Visualization"],
     status: "in-progress" as const,
     image: capstoneCyclistic,
