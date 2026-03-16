@@ -10,7 +10,7 @@ const projects = [
     tags: ["R", "Data Cleaning", "EDA", "Data Visualization"],
     status: "completed" as const,
     image: capstoneBellabeat,
-    deliverableUrl: "#",
+    deliverableUrl: "/docs/Bellabeat.pdf",
     markdownUrl: "#",
   },
   {
