@@ -52,6 +52,9 @@ const Projects = () => {
           <p className="text-sm uppercase tracking-[0.2em] text-primary mb-3">Portfolio</p>
           <div className="glow-line w-16 mb-6" />
           <h2 className="text-3xl md:text-4xl font-bold text-section-foreground">Proyectos</h2>
+          <p className="mt-4 text-lg text-section-foreground/70 max-w-2xl">
+          Casos de estudio basados en análisis de datos y problemas reales de negocio.
+         </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
