@@ -8,7 +8,7 @@ const links = [
   { label: "Educación", href: "#skills" },
   { label: "Contacto", href: "#contact" },
   { label: "CV", 
-  href: "/docs/CV_Nadina_Diaz_Bioengineer_Data_Analyst.pdf", 
+  href: "/docs/Nadina_Diaz.pdf", 
   external: true },
 ];
 
