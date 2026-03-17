@@ -11,7 +11,7 @@ const projects = [
     status: "completed" as const,
     image: capstoneBellabeat,
     deliverableUrl: "/docs/Bellabeat.pdf",
-    markdownUrl: "#",
+    markdownUrl: "https://github.com/nadinadiaz/Bellabeat",
   },
   {
     title: "Análisis de Comportamiento de Usuarios en Cyclistic",
