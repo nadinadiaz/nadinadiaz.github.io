@@ -8,7 +8,7 @@ const links = [
   { label: "Educación", href: "#skills" },
   { label: "Contacto", href: "#contact" },
   { label: "CV", 
-  href: "/docs/Nadina_Diaz.pdf", 
+  href: "/docs/Nadina-Diaz.pdf", 
   external: true },
 ];
 
