@@ -18,7 +18,7 @@ const skillGroups: SkillGroup[] = [
   },
   {
     category: "Google Data Analytics Professional Certificate",
-    skills: ["SQL", "R / RStudio", "Google Sheets", "Tableau", "Data Cleaning", "EDA"],
+    skills: ["SQL", "R / RStudio", "Excel / Google Sheets", "Tableau", "Data Cleaning", "EDA"],
     certLink: "https://www.credly.com/badges/94179df4-68e1-4b9c-a7f4-0ceada6dbf44/public_url",
   },
   {
