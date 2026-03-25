@@ -10,7 +10,7 @@ const links = [
   { label: "CV", 
   href: "/docs/NadinaDiaz1.pdf", 
   external: true },
-];
+]; 
 
 
 const Navbar = () => {
