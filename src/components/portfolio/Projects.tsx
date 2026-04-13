@@ -29,7 +29,7 @@ const projects = [
       "Proyecto personal integrando datos de investigación biomédica con herramientas de analytics modernas para generar insights accionables.",
     tags: ["Python", "SQL", "Data Viz", "Biodata"],
     status: "planned" as const,
-    image: "/placeholder.svg",
+    image: Miniatura,
   },
 ];
 
