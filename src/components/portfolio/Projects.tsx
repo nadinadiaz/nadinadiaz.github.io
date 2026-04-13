@@ -27,7 +27,7 @@ const projects = [
     title: "Análisis de Datos en Bioinvestigación",
     description:
       "Proyecto personal integrando datos de investigación biomédica con herramientas de analytics modernas para generar insights accionables.",
-    tags: ["R", "Data Cleaning", "EDA", "Data Visualization" "Biodata"],
+    tags: ["R", "Data Cleaning", "EDA", "Data Visualization", "Biodata"],
     status: "in-progress" as const,
     image: siniestralidad,
   },
