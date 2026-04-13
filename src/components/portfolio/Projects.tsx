@@ -25,7 +25,7 @@ const projects = [
     markdownUrl: "https://github.com/nadinadiaz/Capstone-Cyclistic-2025",
   },
   {
-    title: "Análisis de Datos en Bioinvestigación",
+    title: "Análisis de Datos en Salud Mental, Estrés Económico y Siniestralidad Laboral",
     description:
       "Proyecto personal integrando datos de investigación biomédica con herramientas de analytics modernas para generar insights accionables.",
     tags: ["R", "Data Cleaning", "EDA", "Data Visualization", "Biodata"],
