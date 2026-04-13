@@ -29,7 +29,7 @@ const projects = [
       "Proyecto personal integrando datos de investigación biomédica con herramientas de analytics modernas para generar insights accionables.",
     tags: ["R", "Data Cleaning", "EDA", "Data Visualization" "Biodata"],
     status: "in-progress" as const,
-    image: Miniatura,
+    image: siniestralidad,
   },
 ];
 
