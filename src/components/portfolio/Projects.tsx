@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github, Lock, FileText } from "lucide-react";
 import capstoneBellabeat from "@/assets/resumen4.png";
 import capstoneCyclistic from "@/assets/bicis2.png";
+import siniestralidad from "@/assets/siniestralidad.png";
 
 const projects = [
   {
