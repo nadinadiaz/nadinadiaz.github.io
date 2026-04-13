@@ -27,7 +27,7 @@ const projects = [
   {
     title: "Análisis de Datos en Salud Mental, Estrés Económico y Siniestralidad Laboral",
     description:
-      "Proyecto personal integrando datos de investigación biomédica con herramientas de analytics modernas para generar insights accionables.",
+      "Proyecto personal que analiza la relación dinámica entre el bienestar psicológico, el contexto económico y la siniestralidad laboral registrada en Argentina (2010–2024). Este estudio exploratorio busca identificar patrones y cambios estructurales en el tiempo, integrando variables que afectan la salud física y mental de los trabajadores bajo una perspectiva de salud ocupacional.",
     tags: ["R", "Data Cleaning", "EDA", "Data Visualization", "Biodata"],
     status: "in-progress" as const,
     image: siniestralidad,
