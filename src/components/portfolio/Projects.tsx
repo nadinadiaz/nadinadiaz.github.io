@@ -31,7 +31,7 @@ const projects = [
     tags: ["R", "Data Cleaning", "EDA", "Data Visualization", "Biodata"],
     status: "in-progress" as const,
     image: siniestralidad,
-     deliverableUrl: "/docs/Análisis de datos Siniestralidad Laboral, bienestar psicológico y entorno económico .pdf",
+     deliverableUrl: "/docs/Análisis de datos Siniestralidad Laboral, bienestar psicológico y entorno económico.pdf",
     markdownUrl: "https://https://github.com/nadinadiaz/Data-Analytics-Siniestralidad-y-Salud-Mental-en-Argentina",
     
   },
