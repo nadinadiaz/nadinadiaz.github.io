@@ -10,7 +10,7 @@ const highlights = [
   {
     icon: Database,
     title: "Exploración y análisis de datos",
-    desc: "Uso herramientas como SQL, R y Excel para explorar datos, detectar tendencias y generar insights accionables.",
+    desc: "Uso herramientas como SQL, R, Excel y Power BI para explorar datos, detectar tendencias y generar insights accionables.",
   },
   {
     icon: Lightbulb,
