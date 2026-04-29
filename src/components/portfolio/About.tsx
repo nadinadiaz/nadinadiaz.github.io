@@ -37,7 +37,7 @@ const About = () => {
           <p className="text-section-foreground/70 max-w-2xl text-lg leading-relaxed">
             Durante más de 15 años trabajé en investigación científica analizando datos complejos para identificar patrones, validar hipótesis y generar conocimiento confiable.
             Esta experiencia me permitió desarrollar un enfoque analítico riguroso basado en la exploración profunda de los datos, la validación de resultados y la comunicación clara de hallazgos.
-            Actualmente aplico ese mismo método al análisis de datos de negocio, utilizando herramientas como SQL, R y Excel para transformar información en insights que apoyen la toma de decisiones.
+            Actualmente aplico ese mismo método al análisis de datos de negocio, utilizando herramientas como SQL, R, Excel y Power BI para transformar información en insights que apoyen la toma de decisiones.
           </p>
         </motion.div>
 
