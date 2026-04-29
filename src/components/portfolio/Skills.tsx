@@ -23,7 +23,8 @@ const skillGroups: SkillGroup[] = [
   },
   {
     category: "Google Project Management Certificate - En Curso",
-    skills: ["Agile / Scrum", "Project Charter", "Risk Management", "Stakeholder Analysis", "Asana"],
+    skills: ["Agile / Scrum", "Project Charter", "Risk Management", "Stakeholder Analysis", "Product Quality (QA/QC)"],
+    certLink: "https://www.credly.com/badges/23418e57-140d-4805-b7c5-c428495d931c/public_url",
   },
 ];
 
