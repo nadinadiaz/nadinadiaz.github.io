@@ -88,7 +88,7 @@ const Skills = () => {
           className="mt-16 flex justify-center"
         >
           <a
-            href="https://www.coursera.org/user/740441d8e0e575836484e5576856598c" // Link a tu perfil de Coursera
+            href="https://www.coursera.org/user/1202c42a62810907794022ab7fcf262d" // Link a tu perfil de Coursera
             target="_blank"
             rel="noopener noreferrer"
             className="group relative inline-flex items-center gap-3 px-8 py-4 bg-primary text-white rounded-full font-semibold shadow-lg hover:shadow-primary/30 hover:scale-105 transition-all duration-300"
